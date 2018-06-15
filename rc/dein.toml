@@ -1,0 +1,30 @@
+#==================================================
+#   Description: dein.toml
+#   Author: n-shinoda
+#   Last Modified: 2018-06-12
+#==================================================
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # 非同期処理
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]] # colorscheme
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]] # ステータスラインの表示内容が強化するプラグイン
+repo = 'itchyny/lightline.vim'
+
+[[plugins]] # インデントを見やすくする
+repo = 'Yggdroot/indentLine'
+
+[[plugins]] # 閉じ括弧を補完する
+repo = 'cohama/lexima.vim'
+
+[[plugins]] # ES6のシンタックスハイライト
+repo = 'othree/yajs.vim'
+
+[[plugins]] # Git操作用プラグイン
+repo = 'tpope/vim-fugitive'
+

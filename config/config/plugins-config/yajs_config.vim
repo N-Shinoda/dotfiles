@@ -1,9 +1,7 @@
 "==================================================
-"   Description: .vimrc
+"   Description: yajs_config.vim
 "   Author: n-shinoda
-"   Last Modified: 2018-06-10
+"   Last Modified: 2018-06-11
 "==================================================
 
-runtime! config/init/*.vim
-runtime! config/plugins-config/*.vim
-
+autocmd Bufread,BufNewFile *.es6 setfiletype javascript

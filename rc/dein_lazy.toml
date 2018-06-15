@@ -1,0 +1,23 @@
+#==================================================
+#   Description: dein_lazy.toml
+#   Author: n-shinoda
+#   Last Modified: 2018-06-13
+#==================================================
+
+[[plugins]] # 一連のインターフェースを提供するプラグイン
+repo = 'Shougo/unite.vim'
+
+[[plugins]] # Unite.vimで最近使ったファイルを表示できるようにする
+repo = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
+
+[[plugins]] # Tabで補完
+repo = 'ervandew/supertab'
+
+[[plugins]] # Python補完のプラグイン
+repo = 'davidhalter/jedi-vim'
+on_ft = ['python']
+
+[[plugins]] # コード補完
+repo = 'Shougo/neocomplete.vim'
+

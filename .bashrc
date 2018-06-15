@@ -126,4 +126,9 @@ fi
 # 環境変数DISPLAYの設定
 export DISPLAY=:0
 
+# 全角記号などの表示の修正
 export VTE_CJK_WIDTH=1
+
+# 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
+export XDG_CONFIG_HOME="$HOME/.config/"
+

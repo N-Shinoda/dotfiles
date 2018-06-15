@@ -1,10 +1,9 @@
 "==================================================
-"   Description: plugins.vim
+"   Description: plugins_neobundle.vim
 "   Author: n-shinoda
-"   Last Modified: 2018-06-10
+"   Last Modified: 2018-06-12
 "==================================================
 
-" scriptファイルの文字コードを指定
 scriptencoding utf-8
 
 " neobundle settings {{{
@@ -24,32 +23,32 @@ let g:neobundle_default_git_protocol='https'
 
 " neobundle#begin - neobundle#endの間に導入するプラグインを記載する
 NeoBundleFetch 'Shougo/neobundle.vim'
-" 一連のインターフェースを提供するプラグイン
-NeoBundle 'Shougo/unite.vim'
 " ステータスラインの表示内容が強化するプラグイン
 NeoBundle 'itchyny/lightline.vim'
-" コード補完
-NeoBundle 'Shougo/neocomplete.vim'
-" Python補完のプラグイン
-NeoBundle 'davidhalter/jedi-vim'
+" インデントを見やすくする
+NeoBundle 'Yggdroot/indentLine'
 " Git操作用プラグイン
 NeoBundle 'tpope/vim-fugitive'
-" Color Scheme Solarized Dark
+" colorscheme Solarized Dark
 NeoBundle 'altercation/vim-colors-solarized'
-" Color Scheme molokai
-" NeoBundle 'tomasr/molokai'
-" Tabで補完
-NeoBundle 'ervandew/supertab'
-" VimFiler
-NeoBundle 'Shougo/vimfiler.vim'
-" VimShell
-NeoBundle 'Shougo/vimshell.vim'
+" colorscheme iceberg
+NeoBundle 'cocopon/iceberg.vim'
 " vimproc
 NeoBundle 'Shougo/vimproc.vim'
 " 閉じ括弧を補完する
 NeoBundle 'cohama/lexima.vim'
+" 一連のインターフェースを提供するプラグイン
+NeoBundle 'Shougo/unite.vim'
+" Unite.vimで最近使ったファイルを表示できるようにする
+NeoBundle 'Shougo/neomru.vim'
 " ES6のシンタックスハイライト
-NeoBundleLazy 'othree/yajs.vim', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'othree/yajs.vim', {'autoload':{'filetypes':['javascript']}}
+" Tabで補完
+NeoBundle 'ervandew/supertab'
+" コード補完
+NeoBundle 'Shougo/neocomplete.vim'
+" Python補完のプラグイン
+NeoBundle 'davidhalter/jedi-vim'
 
 " vimrcに記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
