@@ -10,9 +10,6 @@ repo = 'Shougo/dein.vim'
 [[plugins]] # 非同期処理
 repo = 'Shougo/vimproc.vim'
 
-[[plugins]] # colorscheme
-repo = 'cocopon/iceberg.vim'
-
 [[plugins]] # ステータスラインの表示内容が強化するプラグイン
 repo = 'itchyny/lightline.vim'
 
@@ -27,4 +24,13 @@ repo = 'othree/yajs.vim'
 
 [[plugins]] # Git操作用プラグイン
 repo = 'tpope/vim-fugitive'
+
+[[plugins]] # ディレクトリをツリー表示する
+repo = 'scrooloose/nerdtree'
+
+[[plugins]] # colorscheme
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]] # colorscheme
+repo = 'jonathanfilip/vim-lucius'
 

@@ -1,0 +1,56 @@
+"==================================================
+"   Description: plugins_neobundle.vim
+"   Author: n-shinoda
+"   Last Modified: 2018-06-12
+"==================================================
+
+scriptencoding utf-8
+
+" neobundle settings {{{
+if has('vim_starting')
+    set nocompatible
+    " neobundleをインストールしていない場合は自動インストール
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+        echo "install neobundle..."
+        " vimからコマンド呼び出ししているだけneobundle.vimのクローン
+        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+    endif
+    " runtimepathの追加は必須
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#begin(expand('~/.vim/bundle'))
+let g:neobundle_default_git_protocol='https'
+
+" neobundle#begin - neobundle#endの間に導入するプラグインを記載する
+NeoBundleFetch 'Shougo/neobundle.vim'
+" ステータスラインの表示内容が強化するプラグイン
+NeoBundle 'itchyny/lightline.vim'
+" インデントを見やすくする
+NeoBundle 'Yggdroot/indentLine'
+" Git操作用プラグイン
+NeoBundle 'tpope/vim-fugitive'
+" colorscheme Solarized Dark
+NeoBundle 'altercation/vim-colors-solarized'
+" colorscheme iceberg
+NeoBundle 'cocopon/iceberg.vim'
+" vimproc
+NeoBundle 'Shougo/vimproc.vim'
+" 閉じ括弧を補完する
+NeoBundle 'cohama/lexima.vim'
+" 一連のインターフェースを提供するプラグイン
+NeoBundle 'Shougo/unite.vim'
+" Unite.vimで最近使ったファイルを表示できるようにする
+NeoBundle 'Shougo/neomru.vim'
+" ES6のシンタックスハイライト
+NeoBundle 'othree/yajs.vim', {'autoload':{'filetypes':['javascript']}}
+" Tabで補完
+NeoBundle 'ervandew/supertab'
+" コード補完
+NeoBundle 'Shougo/neocomplete.vim'
+" Python補完のプラグイン
+NeoBundle 'davidhalter/jedi-vim'
+
+" vimrcに記述されたプラグインでインストールされていないものがないかチェックする
+NeoBundleCheck
+call neobundle#end()
+filetype plugin indent on

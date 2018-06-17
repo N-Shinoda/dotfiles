@@ -4,6 +4,9 @@
 "   Last Modified: 2018-06-10
 "==================================================
 
+" シンタックスハイライト
+syntax enable
+
 " エンコード
 set encoding=utf-8
 
@@ -12,9 +15,6 @@ scriptencoding utf-8
 
 " vi互換ではなくVimのデフォルト設定にする
 set nocompatible
-
-" シンタックスハイライト
-syntax enable
 
 " ステータスライン
 set laststatus=2
@@ -27,8 +27,9 @@ set background=dark
 " set background=light
 
 " カラースキーム
+colorscheme lucius
+" colorscheme iceberg
 " colorscheme solarized
-" colorscheme molokai
 
 " ファイルエンコード
 set fileencoding=utf-8
@@ -99,8 +100,10 @@ set history=10000
 " マウスモード有効
 set mouse=a
 
-" xtermとscreen対応
-set ttymouse=xterm2
+" xtermとscreen対応（NeoVimでは削除されたので、読み込まないようにする）
+if !has('nvim')
+    set ttymouse=xterm2
+endif
 
 " コマンドを画面最下部に表示する
 set showcmd

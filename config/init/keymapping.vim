@@ -24,7 +24,9 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
-" キーマッピング
+" NERDTreeToggle
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 " insertモードから抜ける
 " inoremap <silent> jj <ESC>
 " inoremap <silent> <C-j> j
