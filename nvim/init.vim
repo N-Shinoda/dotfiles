@@ -4,8 +4,18 @@
 "   Last Modified: 2018-06-15
 "==================================================
 
+if !&compatible
+    set nocompatible
+endif
+
+" reset augroup
+augroup MyAutoCmd
+    autocmd!
+augroup END
+
 set runtimepath+=~/.vim/
-runtime! /config/init/*.vim
+runtime! /config/init/plugins_dein.vim
+runtime! /config/init/keymapping.vim
+runtime! /config/init/editor.vim
 runtime! /config/plugins-config/*.vim
 
-set number

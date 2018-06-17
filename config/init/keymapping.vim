@@ -27,6 +27,13 @@ inoremap <C-l> <Right>
 " NERDTreeToggle
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+" 閉じタグを補完
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
 " insertモードから抜ける
 " inoremap <silent> jj <ESC>
 " inoremap <silent> <C-j> j

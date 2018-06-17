@@ -14,10 +14,13 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " vi互換ではなくVimのデフォルト設定にする
-set nocompatible
+" set nocompatible
 
 " ステータスライン
 set laststatus=2
+
+" オムニ補完
+setlocal omnifunc=syntaxcomplete#Complete
 
 " 256色使用
 set t_Co=256

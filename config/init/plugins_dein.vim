@@ -45,3 +45,14 @@ if dein#check_install()
     call dein#install()
 endif
 
+" DeinList
+function! s:dein_list() abort
+    echomsg '[dein] #: not sourced, x: not installed'
+    for pair in items(dein#get())
+        echomsg (!isdirectory(pair[1].path) ? 'x'
+            \ : pair[1].sourced ? ' '
+            \ : '#') pair[0]
+    endfor
+endfunction
+command! DeinList call s:dein_list()
+

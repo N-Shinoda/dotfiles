@@ -4,20 +4,33 @@
 #   Last Modified: 2018-06-13
 #==================================================
 
-[[plugins]] # 一連のインターフェースを提供するプラグイン
-repo = 'Shougo/unite.vim'
+# [[plugins]] # 一連のインターフェースを提供するプラグイン
+# repo = 'Shougo/unite.vim'
 
-[[plugins]] # Unite.vimで最近使ったファイルを表示できるようにする
-repo = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
+# [[plugins]] # Unite.vimで最近使ったファイルを表示できるようにする
+# repo = 'Shougo/neomru.vim'
+# on_source = ['unite.vim']
 
-[[plugins]] # Tabで補完
-repo = 'ervandew/supertab'
+[[plugins]] # 自動補完システム
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]] # スニペット機能を追加
+repo = 'Shougo/neosnippet.vim'
+
+[[plugins]] # スニッペットを集めた定義ファイル群
+repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]] # Python補完のプラグイン
 repo = 'davidhalter/jedi-vim'
 on_ft = ['python']
 
-[[plugins]] # コード補完
-repo = 'Shougo/neocomplete.vim'
+# [[plugins]] # コード補完
+# repo = 'Shougo/neocomplete.vim'
+
+#[[plugins]] # Tabで補完
+#repo = 'ervandew/supertab'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = 'html'
 

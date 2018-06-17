@@ -10,6 +10,9 @@ repo = 'Shougo/dein.vim'
 [[plugins]] # 非同期処理
 repo = 'Shougo/vimproc.vim'
 
+[[plugins]] # Denite.nvim is a dark powered Neovim unite all interfaces. 
+repo = 'Shougo/denite.nvim'
+
 [[plugins]] # ステータスラインの表示内容が強化するプラグイン
 repo = 'itchyny/lightline.vim'
 
