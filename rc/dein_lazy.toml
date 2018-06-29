@@ -11,6 +11,10 @@
 # repo = 'Shougo/neomru.vim'
 # on_source = ['unite.vim']
 
+[[plugins]] # 補完機能
+repo = 'Shougo/neocomplete.vim'
+on_i = 1 # インサートモードに入ったら読み込む
+
 [[plugins]] # 自動補完システム
 repo = 'Shougo/deoplete.nvim'
 

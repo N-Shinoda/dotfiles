@@ -1,7 +1,7 @@
 "==================================================
 "   Description: init.vim
 "   Author: n-shinoda
-"   Last Modified: 2018-06-15
+"   Last Modified: 2018-06-29
 "==================================================
 
 if !&compatible
@@ -18,4 +18,3 @@ runtime! /config/init/plugins_dein.vim
 runtime! /config/init/keymapping.vim
 runtime! /config/init/editor.vim
 runtime! /config/plugins-config/*.vim
-
