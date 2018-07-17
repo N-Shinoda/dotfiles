@@ -37,3 +37,9 @@ repo = 'cocopon/iceberg.vim'
 [[plugins]] # colorscheme
 repo = 'jonathanfilip/vim-lucius'
 
+[[plugins]] # colorscheme
+repo = 'johngrib/vim-dracula'
+
+[[plugins]] # colorscheme
+repo = 'tomasr/molokai'
+

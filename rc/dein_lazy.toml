@@ -13,13 +13,17 @@
 
 [[plugins]] # 補完機能
 repo = 'Shougo/neocomplete.vim'
+if = 'has("lua")'
 on_i = 1 # インサートモードに入ったら読み込む
 
-[[plugins]] # 自動補完システム
+[[plugins]] # 自動補完システム(dark powered neo-completion)
 repo = 'Shougo/deoplete.nvim'
 
 [[plugins]] # スニペット機能を追加
-repo = 'Shougo/neosnippet.vim'
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
 
 [[plugins]] # スニッペットを集めた定義ファイル群
 repo = 'Shougo/neosnippet-snippets'

@@ -153,7 +153,8 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-export DISPLAY=:0
+# export DISPLAY=:0
+export DISPLAY=localhost:0
 
 # 全角記号などの表示の修正
 export VTE_CJK_WIDTH=1
@@ -161,4 +162,10 @@ export VTE_CJK_WIDTH=1
 # 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
 export XDG_CONFIG_HOME="$HOME/.config/"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# anaconda
 export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"

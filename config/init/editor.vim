@@ -1,7 +1,7 @@
 "==================================================
 "   Description: editor.vim
 "   Author: n-shinoda
-"   Last Modified: 2018-06-10
+"   Last Modified: 2018-07-17
 "==================================================
 
 " シンタックスハイライト
@@ -33,6 +33,8 @@ set background=dark
 colorscheme lucius
 " colorscheme iceberg
 " colorscheme solarized
+" colorscheme dracula
+" colorscheme molokai
 
 " ファイルエンコード
 set fileencoding=utf-8
@@ -124,7 +126,12 @@ set shiftwidth=4
 set softtabstop=4
 
 " 改行時に前の行のインデントを継続する
-set autoindent
+" set autoindent
 
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-set smartindent
+" set smartindent
+
+" 挿入モードで縦棒カーソルを使う
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+inoremap <Esc> <Esc>

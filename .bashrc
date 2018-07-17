@@ -132,4 +132,10 @@ export VTE_CJK_WIDTH=1
 # 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
 export XDG_CONFIG_HOME="$HOME/.config/"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# anaconda
 export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
