@@ -169,3 +169,6 @@ eval "$(pyenv init -)"
 
 # anaconda
 export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
+
+# for sudoedit
+export EDITOR=nvim
