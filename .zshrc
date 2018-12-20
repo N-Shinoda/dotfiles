@@ -172,3 +172,7 @@ export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
 
 # for sudoedit
 export EDITOR=nvim
+
+# for swift
+export PATH=$PATH:/home/enaoshi/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin
+
