@@ -1,3 +1,9 @@
+#==================================================
+#   Description: .zshrc
+#   Author: n-shinoda
+#   Last Modified: 2018-07-17
+#==================================================
+
 # 環境変数
 export LANG=ja_JP.UTF-8
 
@@ -78,6 +84,7 @@ setopt auto_cd
 
 # cd したら自動的にpushdする
 setopt auto_pushd
+
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
 
