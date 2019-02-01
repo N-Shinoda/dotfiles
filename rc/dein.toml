@@ -1,7 +1,7 @@
 #==================================================
 #   Description: dein.toml
 #   Author: n-shinoda
-#   Last Modified: 2018-06-12
+#   Last Modified: 2019-02-01
 #==================================================
 
 [[plugins]]
@@ -12,9 +12,15 @@ repo = 'Shougo/vimproc.vim'
 
 [[plugins]] # Denite.nvim is a dark powered Neovim unite all interfaces. 
 repo = 'Shougo/denite.nvim'
+hook_add = '''
+    source ~/.vim/config/plugins-config/denite_config.vim
+'''
 
 [[plugins]] # ステータスラインの表示内容が強化するプラグイン
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+    source ~/.vim/config/plugins-config/lightline_config.vim
+'''
 
 [[plugins]] # インデントを見やすくする
 repo = 'Yggdroot/indentLine'
@@ -24,6 +30,9 @@ repo = 'cohama/lexima.vim'
 
 [[plugins]] # ES6のシンタックスハイライト
 repo = 'othree/yajs.vim'
+hook_add = '''
+    source ~/.vim/config/plugins-config/yajs_config.vim
+'''
 
 [[plugins]] # Git操作用プラグイン
 repo = 'tpope/vim-fugitive'
@@ -34,12 +43,15 @@ repo = 'scrooloose/nerdtree'
 [[plugins]] # colorscheme
 repo = 'cocopon/iceberg.vim'
 
-[[plugins]] # colorscheme
-repo = 'jonathanfilip/vim-lucius'
+# [[plugins]] # colorscheme
+# repo = 'jonathanfilip/vim-lucius'
 
 [[plugins]] # colorscheme
 repo = 'johngrib/vim-dracula'
 
-[[plugins]] # colorscheme
-repo = 'tomasr/molokai'
+# [[plugins]] # colorscheme
+# repo = 'tomasr/molokai'
+
+# [[plugins]] # colorscheme
+# repo ='herrbischoff/cobalt2.vim'
 

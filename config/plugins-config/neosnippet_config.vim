@@ -4,10 +4,10 @@
 "   Last Modified: 2018-06-29
 "==================================================
 
-" Ctrl+kにターゲットジャンプ割当
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" Ctrl+/にターゲットジャンプ割当
+imap <C-/> <Plug>(neosnippet_expand_or_jump)
+smap <C-/> <Plug>(neosnippet_expand_or_jump)
+xmap <C-/> <Plug>(neosnippet_expand_target)
 
 let g:deoplete#enable_at_startup = 1
 " Tab補完の設定

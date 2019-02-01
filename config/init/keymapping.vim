@@ -1,7 +1,7 @@
 "==================================================
 "   Description: keymapping.vim
 "   Author: n-shinoda
-"   Last Modified: 2018-06-10
+"   Last Modified: 2019-01-04
 "==================================================
 
 " scriptファイルの文字コードを指定
@@ -28,11 +28,12 @@ inoremap <C-l> <Right>
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " 閉じタグを補完
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-augroup END
+" augroup MyXML
+"   autocmd!
+"   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+"   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+"   autocmd Filetype ejs inoremap <buffer> </ </<C-x><C-o>
+" augroup END
 
 " insertモードから抜ける
 " inoremap <silent> jj <ESC>

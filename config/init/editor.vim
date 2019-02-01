@@ -30,11 +30,13 @@ set background=dark
 " set background=light
 
 " カラースキーム
-colorscheme lucius
-" colorscheme iceberg
+" colorscheme lucius
+colorscheme iceberg
 " colorscheme solarized
 " colorscheme dracula
 " colorscheme molokai
+" colorscheme default
+" colorscheme cobalt2
 
 " ファイルエンコード
 set fileencoding=utf-8
@@ -115,6 +117,12 @@ set showcmd
 
 " タブ入力を複数の空白入力に置き換え
 set expandtab
+
+" 編集中のファイルが'Makefile'ならnoexpandtabにする
+let _curfile=expand("%:r")
+if _curfile == 'Makefile'
+    set noexpandtab
+endif
 
 " 画面上でタブ文字が占める幅
 set tabstop=4

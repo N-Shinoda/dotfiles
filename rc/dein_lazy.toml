@@ -1,7 +1,7 @@
 #==================================================
 #   Description: dein_lazy.toml
 #   Author: n-shinoda
-#   Last Modified: 2018-06-13
+#   Last Modified: 2019-02-01
 #==================================================
 
 # [[plugins]] # 一連のインターフェースを提供するプラグイン
@@ -11,19 +11,33 @@
 # repo = 'Shougo/neomru.vim'
 # on_source = ['unite.vim']
 
-[[plugins]] # 補完機能
-repo = 'Shougo/neocomplete.vim'
-if = 'has("lua")'
-on_i = 1 # インサートモードに入ったら読み込む
-
 [[plugins]] # 自動補完システム(dark powered neo-completion)
 repo = 'Shougo/deoplete.nvim'
+on_i = 1
+on_event = 'InsertEnter'
+hook_source = '''
+    source ~/.vim/config/plugins-config/deoplete_config.vim
+'''
+
+[[plugins]] # deopleteの補完ソース
+repo = 'zchee/deoplete-clang'
+
+[[plugins]] # c/c++の入力補完をしてくれるプラグイン
+repo = 'rhysd/vim-clang-format'
+
+# [[plugins]] # 補完機能
+# repo = 'Shougo/neocomplete.vim'
+# if = 'has("lua")'
+# on_i = 1 # インサートモードに入ったら読み込む
 
 [[plugins]] # スニペット機能を追加
 repo = 'Shougo/neosnippet'
 depends = ['neosnippet-snippets']
 on_i = 1
 on_ft = ['snippet']
+hook_add = '''
+    source ~/.vim/config/plugins-config/neosnippet_config.vim
+'''
 
 [[plugins]] # スニッペットを集めた定義ファイル群
 repo = 'Shougo/neosnippet-snippets'
@@ -31,12 +45,18 @@ repo = 'Shougo/neosnippet-snippets'
 [[plugins]] # Python補完のプラグイン
 repo = 'davidhalter/jedi-vim'
 on_ft = ['python']
+hook_add = '''
+    source ~/.vim/config/plugins-config/jedi-vim_config.vim
+'''
 
 # [[plugins]] # コード補完
 # repo = 'Shougo/neocomplete.vim'
 
 #[[plugins]] # Tabで補完
 #repo = 'ervandew/supertab'
+hook_add = '''
+    source ~/.vim/config/plugins-config/supertab_config.vim
+'''
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
