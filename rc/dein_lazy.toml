@@ -52,13 +52,13 @@ hook_add = '''
 # [[plugins]] # コード補完
 # repo = 'Shougo/neocomplete.vim'
 
-#[[plugins]] # Tabで補完
-#repo = 'ervandew/supertab'
-hook_add = '''
-    source ~/.vim/config/plugins-config/supertab_config.vim
-'''
+# [[plugins]] # Tabで補完
+# repo = 'ervandew/supertab'
+# hook_add = '''
+#     source ~/.vim/config/plugins-config/supertab_config.vim
+# '''
 
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = 'html'
+# [[plugins]]
+# repo = 'mattn/emmet-vim'
+# on_ft = 'html'
 

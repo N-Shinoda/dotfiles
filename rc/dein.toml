@@ -34,11 +34,14 @@ hook_add = '''
     source ~/.vim/config/plugins-config/yajs_config.vim
 '''
 
-[[plugins]] # Git操作用プラグイン
-repo = 'tpope/vim-fugitive'
+# [[plugins]] # Git操作用プラグイン
+# repo = 'tpope/vim-fugitive'
 
 [[plugins]] # ディレクトリをツリー表示する
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+    source ~/.vim/config/plugins-config/NERDTree_config.vim
+'''
 
 [[plugins]] # colorscheme
 repo = 'cocopon/iceberg.vim'
@@ -46,8 +49,8 @@ repo = 'cocopon/iceberg.vim'
 # [[plugins]] # colorscheme
 # repo = 'jonathanfilip/vim-lucius'
 
-[[plugins]] # colorscheme
-repo = 'johngrib/vim-dracula'
+# [[plugins]] # colorscheme
+# repo = 'johngrib/vim-dracula'
 
 # [[plugins]] # colorscheme
 # repo = 'tomasr/molokai'

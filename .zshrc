@@ -161,7 +161,10 @@ stty stop undef
 
 # 環境変数DISPLAYの設定
 # export DISPLAY=:0
-export DISPLAY=localhost:0
+export DISPLAY=localhost:0.0
+
+# 必ずXming経由でOpenGLを使う
+export LIBGL_ALWAYS_INDIRECT=1
 
 # 全角記号などの表示の修正
 export VTE_CJK_WIDTH=1
