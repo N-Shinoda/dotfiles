@@ -103,6 +103,9 @@ setopt hist_reduce_blanks
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
 
+# zsh: no matches found:
+setopt nonomatch
+
 # キーバインド
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 bindkey '^R' history-incremental-pattern-search-backward
@@ -161,7 +164,7 @@ stty stop undef
 
 # 環境変数DISPLAYの設定
 # export DISPLAY=:0
-export DISPLAY=localhost:0.0
+export DISPLAY=192.168.11.6:0.0
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
@@ -171,6 +174,7 @@ export VTE_CJK_WIDTH=1
 
 # 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
 export XDG_CONFIG_HOME="$HOME/.config/"
+export XDG_CACHE_HOME="$HOME/.cache/"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -178,11 +182,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 # anaconda
-export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
+# export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
 
 # for sudoedit
 export EDITOR=nvim
 
 # for swift
-export PATH=$PATH:/home/enaoshi/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin
+# export PATH=$PATH:/home/enaoshi/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin
 
