@@ -15,12 +15,6 @@ augroup END
 
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-" set runtimepath+=~/.vim/
-" runtime! /config/init/plugins_dein.vim
-" runtime! /config/init/keymapping.vim
-" runtime! /config/init/editor.vim
-" runtime! /config/plugins-config/*.vim
-
 "===============================================================
 "   plugins_dein
 "===============================================================
@@ -269,4 +263,3 @@ set softtabstop=4
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 inoremap <Esc> <Esc>
-

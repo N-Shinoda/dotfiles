@@ -38,7 +38,6 @@ hook_add = '''
     nmap <silent> [denite]m :<C-u>Denite file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
     nmap <silent> [denite]f :<C-u>Denite file/rec<CR>
     nmap <silent> [denite]d :<C-u>Denite directory_rec<CR>
-
     nmap <silent> [deniteProject]b :<C-u>DeniteProject buffer<CR>
     nmap <silent> [deniteProject]g :<C-u>DeniteProject grep<CR>
     nmap <silent> [deniteProject]m :<C-u>DeniteProject file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
@@ -55,13 +54,11 @@ hook_source = '''
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
     endif
-
     call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
     call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
     call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
     call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
     call denite#custom#map('insert', "<C-h>", '<denite:do_action:split>')
-
     call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', [
                 \ '.git/', 'build/', '__pycache__/',
                 \ 'images/', '*.o', '*.make', '*.min.*',
@@ -89,9 +86,9 @@ repo = 'cohama/lexima.vim'
 #===============================================================
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_source '''
+hook_source = '''
     let g:lightline = {
-    \ 'colorscheme': 'iceberg',
+    \ 'colorscheme': 'default',
     \ 'mode_map': {'c': 'NORMAL'},
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],[ 'fugitive', 'filename' ] ]
@@ -149,6 +146,12 @@ hook_source '''
     return winwidth(0) > 60 ? lightline#mode() : ''
     endfunction
 '''
+#===============================================================
+# Shougo/neosnippet-snippets↲#=
+# スニッペットを集めた定義ファイル群↲
+#=========== ===================================================
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
 
 #===============================================================
 # scrooloose/nerdtree
@@ -161,10 +164,3 @@ hook_source = '''
     let NERDTreeShowHidden = 1
     nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
-
-#===============================================================
-# ryanoasis/vim-devicons
-# 
-#===============================================================
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'

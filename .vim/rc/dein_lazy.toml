@@ -14,17 +14,9 @@ on_i = 1
 on_event = 'InsertEnter'
 hook_source = '''
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#auto_complete_delay = 0
-    let g:deoplete#auto_complete_start_length = 1
-    let g:deoplete#enable_camel_case = 0
-    let g:deoplete#enable_ignore_case = 0
-    let g:deoplete#enable_refresh_always = 0
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#file#enable_buffer_path = 1
-    let g:deoplete#max_list = 10000
-    set completeopt-=preview
-    inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
-    inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+        \ neosnippet#expandable_or_jumpable() ?
+        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 
 #===============================================================
@@ -33,8 +25,6 @@ hook_source = '''
 #===============================================================
 [[plugins]]
 repo = 'zchee/deoplete-clang'
-on_ft = ['c', 'cpp', 'cmake']
-depends = ['deoplete.nvim']
 
 #===============================================================
 # Shougo/neoinclude.vim
@@ -52,27 +42,16 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'Shougo/neosnippet'
 on_i = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
 hook_source = '''
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k> <Plug>(neosnippet_expand_target)
-    if has('conceal')
-      set conceallevel=2 concealcursor=niv
-    endif
-    let g:neosnippet#enable_snipmate_compatibility = 1
-    let g:neosnippet#enable_completed_snippet = 1
-    let g:neosnippet#expand_word_boundary = 1
-    let g:neosnippet#enable_completed_snippet = 1
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 '''
-hook_add = '''
-    let g:neosnippet#snippets_directory = "$XDG_CONFIG_HOME/nvim/autoload/snippets/"
-'''
-#===============================================================
-# Shougo/neosnippet-snippets
-# スニッペットを集めた定義ファイル群
-#===============================================================
-# [[plugins]]
-# repo = 'Shougo/neosnippet-snippets'
 
 #===============================================================
 # rhysd/vim-clang-format
