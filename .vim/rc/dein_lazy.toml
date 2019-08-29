@@ -1,67 +1,84 @@
-#==================================================
+#===============================================================
 #   Description: dein_lazy.toml
-#   Author: n-shinoda
-#   Last Modified: 2019-02-01
-#==================================================
+#   Author: N-Shinoda
+#   Last Modified: 2019-08-28
+#===============================================================
 
-# [[plugins]] # 一連のインターフェースを提供するプラグイン
-# repo = 'Shougo/unite.vim'
+#===============================================================
+# Shougo/deoplete.nvim
+# 自動補完システム(dark powered neo-completion)
+#===============================================================
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+on_event = 'InsertEnter'
+hook_source = '''
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#auto_complete_delay = 0
+    let g:deoplete#auto_complete_start_length = 1
+    let g:deoplete#enable_camel_case = 0
+    let g:deoplete#enable_ignore_case = 0
+    let g:deoplete#enable_refresh_always = 0
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#file#enable_buffer_path = 1
+    let g:deoplete#max_list = 10000
+    set completeopt-=preview
+    inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+    inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+'''
 
-# [[plugins]] # Unite.vimで最近使ったファイルを表示できるようにする
-# repo = 'Shougo/neomru.vim'
-# on_source = ['unite.vim']
-
-# [[plugins]] # 自動補完システム(dark powered neo-completion)
-# repo = 'Shougo/deoplete.nvim'
-# on_i = 1
-# on_event = 'InsertEnter'
-# hook_source = '''
-#     source ~/.vim/config/plugins-config/deoplete_config.vim
-# '''
-
-[[plugins]] # deopleteの補完ソース
+#===============================================================
+# zchee/deoplete-clang
+# deopleteの補完ソース
+#===============================================================
+[[plugins]]
 repo = 'zchee/deoplete-clang'
-on_ft = 'cpp'
-depends = 'deoplete.nvim
+on_ft = ['c', 'cpp', 'cmake']
+depends = ['deoplete.nvim']
 
-[[plugins]] # c/c++の入力補完をしてくれるプラグイン
-repo = '"rhysd/vim-clang-format'
-on_ft = 'cpp'
+#===============================================================
+# Shougo/neoinclude.vim
+# ヘッダファイルの補完
+#===============================================================
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+on_ft = ['c', 'cpp']
+depends = ['deoplete.nvim']
 
-# [[plugins]] # 補完機能
-# repo = 'Shougo/neocomplete.vim'
-# if = 'has("lua")'
-# on_i = 1 # インサートモードに入ったら読み込む
-
-# [[plugins]] # スニペット機能を追加
-# repo = 'Shougo/neosnippet'
-# depends = ['neosnippet-snippets']
-# on_i = 1
-# on_ft = ['snippet']
-# hook_add = '''
-#     source ~/.vim/config/plugins-config/neosnippet_config.vim
-# '''
-
-# [[plugins]] # スニッペットを集めた定義ファイル群
+#===============================================================
+# Shougo/neosnippet.vim
+# スニペット機能を追加
+#===============================================================
+[[plugins]]
+repo = 'Shougo/neosnippet'
+on_i = 1
+hook_source = '''
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+    if has('conceal')
+      set conceallevel=2 concealcursor=niv
+    endif
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#enable_completed_snippet = 1
+    let g:neosnippet#expand_word_boundary = 1
+    let g:neosnippet#enable_completed_snippet = 1
+'''
+hook_add = '''
+    let g:neosnippet#snippets_directory = "$XDG_CONFIG_HOME/nvim/autoload/snippets/"
+'''
+#===============================================================
+# Shougo/neosnippet-snippets
+# スニッペットを集めた定義ファイル群
+#===============================================================
+# [[plugins]]
 # repo = 'Shougo/neosnippet-snippets'
 
-# [[plugins]] # Python補完のプラグイン
-# repo = 'davidhalter/jedi-vim'
-# on_ft = ['python']
-# hook_add = '''
-#     source ~/.vim/config/plugins-config/jedi-vim_config.vim
-# '''
-
-# [[plugins]] # コード補完
-# repo = 'Shougo/neocomplete.vim'
-
-# [[plugins]] # Tabで補完
-# repo = 'ervandew/supertab'
-# hook_add = '''
-#     source ~/.vim/config/plugins-config/supertab_config.vim
-# '''
-
-# [[plugins]]
-# repo = 'mattn/emmet-vim'
-# on_ft = 'html'
+#===============================================================
+# rhysd/vim-clang-format
+# C/C++の入力補完をしてくれるプラグイン
+#===============================================================
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = 'cpp'
 

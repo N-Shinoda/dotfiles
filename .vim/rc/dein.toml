@@ -1,93 +1,170 @@
-#==================================================
+#===============================================================
 #   Description: dein.toml
-#   Author: n-shinoda
-#   Last Modified: 2019-02-01
-#==================================================
+#   Author: N-Shinoda
+#   Last Modified: 2019-08-28
+#===============================================================
 
+#===============================================================
+# colorscheme
+# カラースキーム
+#===============================================================
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+# [[plugins]]
+# repo = 'jonathanfilip/vim-lucius'
+
+# [[plugins]]
+# repo = 'johngrib/vim-dracula'
+
+#===============================================================
+# Shougo/dein.vim
+# プラグインマネージャ
+#===============================================================
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]] # 非同期処理
-repo = 'Shougo/vimproc.vim'
-
-[[plugins]] # Denite.nvim is a dark powered Neovim unite all interfaces. 
+#===============================================================
+# Shougo/denite.nvim
+# 一覧から特定のデータを検索してアクションを実行する
+#===============================================================
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-    source ~/.vim/config/plugins-config/denite_config.vim
-'''
+    nmap <Space> [denite]
+    nmap <Space>p [deniteProject]
+    nmap <silent> [denite]b :<C-u>Denite buffer<CR>
+    nmap <silent> [denite]g :<C-u>Denite grep<CR>
+    nmap <silent> [denite]m :<C-u>Denite file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
+    nmap <silent> [denite]f :<C-u>Denite file/rec<CR>
+    nmap <silent> [denite]d :<C-u>Denite directory_rec<CR>
 
-[[plugins]] # ステータスラインの表示内容が強化するプラグイン
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-    source ~/.vim/config/plugins-config/lightline_config.vim
+    nmap <silent> [deniteProject]b :<C-u>DeniteProject buffer<CR>
+    nmap <silent> [deniteProject]g :<C-u>DeniteProject grep<CR>
+    nmap <silent> [deniteProject]m :<C-u>DeniteProject file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
+    nmap <silent> [deniteProject]f :<C-u>DeniteProject file/rec<CR>
+    nmap <silent> [deniteProject]d :<C-u>DeniteProject directory_rec<CR>
 '''
+hook_source = '''
+    if executable('rg')
+        call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'final_opts', [])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+    endif
 
-[[plugins]] # インデントを見やすくする
+    call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
+    call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
+    call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+    call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+    call denite#custom#map('insert', "<C-h>", '<denite:do_action:split>')
+
+    call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', [
+                \ '.git/', 'build/', '__pycache__/',
+                \ 'images/', '*.o', '*.make', '*.min.*',
+                \ 'img/', 'fonts/', '*~', '*.exe', '*.bak',
+                \ '.DS_Store', '*.pyc', '*.class', 'tags'
+                \ ])
+'''
+#===============================================================
+# Yggdroot/indentLine
+# インデントを見やすくする
+#===============================================================
+[[plugins]]
 repo = 'Yggdroot/indentLine'
 
-[[plugins]] # 閉じ括弧を補完する
+#===============================================================
+# cohama/lexima.vim
+# 閉じ括弧を補完する
+#===============================================================
+[[plugins]]
 repo = 'cohama/lexima.vim'
 
-[[plugins]] # ES6のシンタックスハイライト
-repo = 'othree/yajs.vim'
-hook_add = '''
-    source ~/.vim/config/plugins-config/yajs_config.vim
+#===============================================================
+# itchyny/lightline.vim
+# ステータスラインの表示内容が強化するプラグイン
+#===============================================================
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_source '''
+    let g:lightline = {
+    \ 'colorscheme': 'iceberg',
+    \ 'mode_map': {'c': 'NORMAL'},
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],[ 'fugitive', 'filename' ] ]
+    \ },
+    \ 'component_function': {
+    \   'modified': 'LightlineModified',
+    \   'readonly': 'LightlineReadonly',
+    \   'fugitive': 'LightlineFugitive',
+    \   'filename': 'LightlineFilename',
+    \   'fileformat': 'LightlineFileformat',
+    \   'filetype': 'LightlineFiletype',
+    \   'fileencoding': 'LightlineFileencoding',
+    \   'mode': 'LightlineMode'
+    \ }
+    \ }
+
+    function! LightlineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction
+
+    function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    endfunction
+
+    function! LightlineFilename()
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \  '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endfunction
+
+    function! LightlineFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+        return fugitive#head()
+    else
+        return ''
+    endif
+    endfunction
+
+    function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+
+    function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+
+    function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
+
+    function! LightlineMode()
+    return winwidth(0) > 60 ? lightline#mode() : ''
+    endfunction
 '''
 
-# [[plugins]] # Git操作用プラグイン
-# repo = 'tpope/vim-fugitive'
-
-[[plugins]] # ディレクトリをツリー表示する
+#===============================================================
+# scrooloose/nerdtree
+# ディレクトリをツリー表示する
+#===============================================================
+[[plugins]]
 repo = 'scrooloose/nerdtree'
-hook_add = '''
-    source ~/.vim/config/plugins-config/NERDTree_config.vim
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup   = 1
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_i = 1;
 hook_source = '''
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
- For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif 
+    " 隠しファイルを設定する
+    let NERDTreeShowHidden = 1
+    nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
 
-[[plugins]] # colorscheme
-repo = 'cocopon/iceberg.vim'
-
-# [[plugins]] # colorscheme
-# repo = 'jonathanfilip/vim-lucius'
-
-# [[plugins]] # colorscheme
-# repo = 'johngrib/vim-dracula'
-
-# [[plugins]] # colorscheme
-# repo = 'tomasr/molokai'
-
-# [[plugins]] # colorscheme
-# repo ='herrbischoff/cobalt2.vim'
-
+#===============================================================
+# ryanoasis/vim-devicons
+# 
+#===============================================================
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'

@@ -6,7 +6,7 @@
 
 " for lightline
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'default',
     \ 'mode_map': {'c': 'NORMAL'},
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],[ 'fugitive', 'filename' ] ]

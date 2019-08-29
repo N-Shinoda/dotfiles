@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2018-07-17
+#   Last Modified: 2019-08-28
 #==================================================
 
 # 環境変数
@@ -115,16 +115,21 @@ bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
 # エイリアス
-eval `dircolors ~/.colorrc`
+# eval `dircolors ~/.colorrc`
 alias ls='ls -F --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
 
-alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
+alias ..='cd ../'
 alias mkdir='mkdir -p'
+
+# rmコマンドでゴミ箱へ移動する
+if type trash-put &> /dev/null
+then
+    alias rm='trash-put'
+fi
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
@@ -134,29 +139,10 @@ alias -g L='| less'
 alias -g G='| grep'
 
 # C で標準出力をクリップボードにコピーする
-if which pbcopy >/dev/null 2>&1 ; then
-    # Mac
-    alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-    # Linux
+if which xsel >/dev/null 2>&1 ; then
     alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-    # Cygwin
-    alias -g C='| putclip'
 fi
 
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-        ;;
-    linux*)
-        #Linux用の設定
-        alias ls='ls -F --color=auto'
-        ;;
-esac
 # Ctrl + s
 stty stop undef
 
