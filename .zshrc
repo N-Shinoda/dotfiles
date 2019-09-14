@@ -134,6 +134,9 @@ fi
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 
+# ssh to aurora-sv.local as gitadmin.
+alias ssh2gitadmin='ssh -i ~/.ssh/gitadmin_id_rsa -p 54322 gitadmin@192.168.11.30'
+
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
@@ -167,12 +170,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# anaconda
-# export PATH="$PYENV_ROOT/versions/anaconda3-5.2.0/bin:$PATH"
-
 # for sudoedit
 export EDITOR=nvim
-
-# for swift
-# export PATH=$PATH:/home/enaoshi/swift-4.2.1-RELEASE-ubuntu18.04/usr/bin
-

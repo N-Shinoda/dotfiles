@@ -1,7 +1,7 @@
 #===============================================================
 #   Description: dein.toml
 #   Author: N-Shinoda
-#   Last Modified: 2019-08-28
+#   Last Modified: 2019-09-15
 #===============================================================
 
 #===============================================================
@@ -86,17 +86,17 @@ repo = 'cohama/lexima.vim'
 #===============================================================
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_source = '''
+hook_add = '''
     let g:lightline = {
-    \ 'colorscheme': 'default',
+    \ 'colorscheme': 'wombat', 
     \ 'mode_map': {'c': 'NORMAL'},
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],[ 'fugitive', 'filename' ] ]
+    \   'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
     \   'modified': 'LightlineModified',
     \   'readonly': 'LightlineReadonly',
-    \   'fugitive': 'LightlineFugitive',
     \   'filename': 'LightlineFilename',
     \   'fileformat': 'LightlineFileformat',
     \   'filetype': 'LightlineFiletype',
@@ -120,14 +120,6 @@ hook_source = '''
         \  &ft == 'vimshell' ? vimshell#get_status_string() :
         \  '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-    endfunction
-
-    function! LightlineFugitive()
-    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-        return fugitive#head()
-    else
-        return ''
-    endif
     endfunction
 
     function! LightlineFileformat()
