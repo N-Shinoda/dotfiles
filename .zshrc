@@ -167,8 +167,12 @@ export XDG_CACHE_HOME="$HOME/.cache/"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PATH:$PYENV_ROOT/bin"
 eval "$(pyenv init -)"
+
+# Go言語
+export GO_HOME="/usr/local/go"
+export PATH="$PATH:$GO_HOME/bin"
 
 # for sudoedit
 export EDITOR=nvim
