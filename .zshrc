@@ -141,6 +141,9 @@ alias ssh2gitadmin='ssh -i ~/.ssh/gitadmin_id_rsa -p 54322 gitadmin@192.168.11.3
 alias -g L='| less'
 alias -g G='| grep'
 
+alias -g cl++='clang++'
+alias -g cl="clang"
+
 # C で標準出力をクリップボードにコピーする
 if which xsel >/dev/null 2>&1 ; then
     alias -g C='| xsel --input --clipboard'

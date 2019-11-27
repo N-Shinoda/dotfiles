@@ -184,8 +184,7 @@ set visualbell t_vb=
 set noerrorbells
 
 " OSのクリップボードを使う
-set clipboard+=unnamed
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 
 " 不可視文字を表示
 set list
