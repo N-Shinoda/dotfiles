@@ -155,8 +155,8 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-# export DISPLAY=:0
-export DISPLAY=192.168.11.6:0.0
+export DISPLAY=192.168.11.100:0.0
+export LIBGL_ALWAYS_INDIRECT=1
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
