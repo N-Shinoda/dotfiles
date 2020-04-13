@@ -155,8 +155,7 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-export DISPLAY=192.168.11.100:0.0
-export LIBGL_ALWAYS_INDIRECT=1
+export DISPLAY=192.168.11.10:0.0
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
@@ -174,8 +173,8 @@ export PATH="$PATH:$PYENV_ROOT/bin"
 eval "$(pyenv init -)"
 
 # Go言語
-export GO_HOME="/usr/local/go"
-export PATH="$PATH:$GO_HOME/bin"
+# export GO_HOME="/usr/local/go"
+# export PATH="$PATH:$GO_HOME/bin"
 
 # for sudoedit
 export EDITOR=nvim
