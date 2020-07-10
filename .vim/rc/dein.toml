@@ -156,3 +156,13 @@ hook_source = '''
     let NERDTreeShowHidden = 1
     nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
+
+#===============================================================
+# alvan/vim-closetag
+# HTMLやXMLのタグを自動で閉じる
+#===============================================================
+[[plugins]]  
+repo = 'alvan/vim-closetag'  
+hook_add = '''  
+  let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'  
+'''  
