@@ -115,7 +115,7 @@ bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
 # エイリアス
-# eval `dircolors ~/.colorrc`
+eval `dircolors ~/.colorrc`
 alias ls='ls -F --color=auto'
 alias la='ls -a'
 alias ll='ls -la'

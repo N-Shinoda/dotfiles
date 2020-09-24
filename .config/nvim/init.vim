@@ -4,22 +4,19 @@
 "   Last Modified: 2019-08-28
 "===============================================================
 
-if !&compatible
-    set nocompatible
-endif
-
 " reset augroup
 augroup MyAutoCmd
     autocmd!
 augroup END
 
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
-
+let $VIMRUNTIME="/usr/share/nvim/runtime"
+set runtimepath+=/usr/share/nvim/runtime
 "===============================================================
 "   plugins_dein
 "===============================================================
 
-scriptencoding utf-8
+" scriptencoding utf-8
 
 " プラグインが実際にインストールされるディレクトリ
 let g:rc_dir = expand('~/.vim/rc')
@@ -98,28 +95,6 @@ inoremap <C-l> <Right>
 " NERDTreeToggle
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
-" 閉じタグを補完
-" augroup MyXML
-"   autocmd!
-"   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-"   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-"   autocmd Filetype ejs inoremap <buffer> </ </<C-x><C-o>
-" augroup END
-
-" insertモードから抜ける
-" inoremap <silent> jj <ESC>
-" inoremap <silent> <C-j> j
-" inoremap <silent> kk <ESC>
-" inoremap <silent> <C-k> k
-
-" 括弧の補完
-" inoremap { {}<Left>
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap {<Enter> {}<Left><CR><ESC><S-o>
-" inoremap [<Enter> []<Left><CR><ESC><S-o>
-" inoremap (<Enter> ()<Left><CR><ESC><S-o>
-
 "===============================================================
 "   editor
 "===============================================================
@@ -129,12 +104,11 @@ syntax enable
 
 " エンコード
 set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
 
 " scriptファイルの文字コードを指定
 scriptencoding utf-8
-
-" vi互換ではなくVimのデフォルト設定にする
-" set nocompatible
 
 " ステータスライン
 set laststatus=2
@@ -150,16 +124,7 @@ set background=dark
 " set background=light
 
 " カラースキーム
-" colorscheme lucius
 colorscheme iceberg
-" colorscheme solarized
-" colorscheme dracula
-" colorscheme molokai
-" colorscheme default
-" colorscheme cobalt2
-
-" ファイルエンコード
-set fileencoding=utf-8
 
 " 改行コードの自動認識
 set fileformats=unix
@@ -170,10 +135,8 @@ set scrolloff=5
 " .swapファイルを作らない
 set noswapfile
 
-" バックアップファイルを作らない
+" バックアップファイルを作らない、バックアップをしない
 set nowritebackup
-
-" バックップをしない
 set nobackup
 
 " バックスペースで各種消せるようにする
@@ -182,6 +145,7 @@ set backspace=indent,eol,start
 " ビープ音を消す
 set visualbell t_vb=
 set noerrorbells
+" set belloff=all
 
 " OSのクリップボードを使う
 set clipboard=unnamed,unnamedplus
@@ -192,6 +156,9 @@ set listchars=tab:»-,trail:_,extends:»,precedes:«,nbsp:%,eol:↲
 
 " 行番号を表示
 set number
+
+" 行の相対表示をやめる
+set norelativenumber
 
 " 右下に表示される行・列の番号を表示する
 set ruler
@@ -262,3 +229,7 @@ set softtabstop=4
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 inoremap <Esc> <Esc>
+
+" ファイルを開いたときにタブ文字があったらスペースに変換
+autocmd BufNewFile,BufRead * set expandtab
+autocmd BufNewFile,BufRead * retab

@@ -81,69 +81,27 @@ repo = 'Yggdroot/indentLine'
 repo = 'cohama/lexima.vim'
 
 #===============================================================
-# itchyny/lightline.vim
+# vim-airline/vim-airline
 # ステータスラインの表示内容が強化するプラグイン
 #===============================================================
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-    let g:lightline = {
-    \ 'colorscheme': 'wombat', 
-    \ 'mode_map': {'c': 'NORMAL'},
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \           [ 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'modified': 'LightlineModified',
-    \   'readonly': 'LightlineReadonly',
-    \   'filename': 'LightlineFilename',
-    \   'fileformat': 'LightlineFileformat',
-    \   'filetype': 'LightlineFiletype',
-    \   'fileencoding': 'LightlineFileencoding',
-    \   'mode': 'LightlineMode'
-    \ }
-    \ }
+[[plugins]]  
+repo = 'vim-airline/vim-airline'
+depends = ['/vim-airline-themes']
 
-    function! LightlineModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-    endfunction
-
-    function! LightlineReadonly()
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-    endfunction
-
-    function! LightlineFilename()
-    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \  '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-    endfunction
-
-    function! LightlineFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
-    endfunction
-
-    function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-    endfunction
-
-    function! LightlineFileencoding()
-    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-    endfunction
-
-    function! LightlineMode()
-    return winwidth(0) > 60 ? lightline#mode() : ''
-    endfunction
-'''
 #===============================================================
-# Shougo/neosnippet-snippets↲#=
-# スニッペットを集めた定義ファイル群↲
-#=========== ===================================================
+# vim-airline/vim-airline-themes
+# vim-airlineのテーマ
+#===============================================================
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+  set laststatus=2
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  let g:airline#extensions#whitespace#mixed_indent_algo = 1
+  let g:airline_theme = 'solarized dark'
+'''
 
 #===============================================================
 # scrooloose/nerdtree
