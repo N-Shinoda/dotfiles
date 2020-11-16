@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2019-08-28
+#   Last Modified: 2020-11-17
 #==================================================
 
 # 環境変数
@@ -115,7 +115,7 @@ bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
 # エイリアス
-eval `dircolors ~/.colorrc`
+# eval `dircolors ~/.colorrc`
 alias ls='ls -F --color=auto'
 alias la='ls -a'
 alias ll='ls -la'
@@ -155,7 +155,7 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-export DISPLAY=192.168.11.10:0.0
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
@@ -171,10 +171,6 @@ export XDG_CACHE_HOME="$HOME/.cache/"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$PYENV_ROOT/bin"
 eval "$(pyenv init -)"
-
-# Go言語
-# export GO_HOME="/usr/local/go"
-# export PATH="$PATH:$GO_HOME/bin"
 
 # for sudoedit
 export EDITOR=nvim
