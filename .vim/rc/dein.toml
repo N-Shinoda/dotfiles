@@ -123,4 +123,12 @@ hook_source = '''
 repo = 'alvan/vim-closetag'  
 hook_add = '''  
   let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'  
-'''  
+'''
+
+#===============================================================
+# tpope/vim-fugitive
+# vim上でgitを操作する
+#===============================================================
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
