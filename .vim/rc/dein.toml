@@ -87,6 +87,12 @@ repo = 'cohama/lexima.vim'
 [[plugins]]  
 repo = 'vim-airline/vim-airline'
 depends = ['/vim-airline-themes']
+hook_add = '''
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
+    nmap <C-p> <Plug>AirlineSelectPrevTab
+    nmap <C-n> <Plug>AirlineSelectNextTab
+'''
 
 #===============================================================
 # vim-airline/vim-airline-themes
@@ -100,7 +106,7 @@ hook_add = '''
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   let g:airline#extensions#whitespace#mixed_indent_algo = 1
-  let g:airline_theme = 'solarized dark'
+  let g:airline_theme = 'papercolor'
 '''
 
 #===============================================================
@@ -123,7 +129,7 @@ hook_source = '''
 repo = 'alvan/vim-closetag'  
 hook_add = '''  
   let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.erb,*.php,*.vue'  
-'''
+'''  
 
 #===============================================================
 # tpope/vim-fugitive
@@ -131,4 +137,3 @@ hook_add = '''
 #===============================================================
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-

@@ -149,6 +149,9 @@ if which xsel >/dev/null 2>&1 ; then
     alias -g C='| xsel --input --clipboard'
 fi
 
+# シェルの再起動
+alias relogin='exec $SHELL -l'
+
 # Ctrl + s
 stty stop undef
 
