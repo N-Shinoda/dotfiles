@@ -23,6 +23,14 @@ hook_source = '''
 # zchee/deoplete-clang
 # deopleteの補完ソース
 #===============================================================
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+on_ft = ['c', 'cpp', 'cmake']
+hook_source = '''
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang-10.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+'''
+depends = ['deoplete.nvim']
 
 #===============================================================
 # Shougo/neosnippet.vim
@@ -73,4 +81,5 @@ depends = ['deoplete.nvim']
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
 on_ft = 'cpp'
+
 
