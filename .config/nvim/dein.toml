@@ -1,7 +1,7 @@
 #===============================================================
 #   Description: dein.toml
 #   Author: N-Shinoda
-#   Last Modified: 2019-09-15
+#   Last Modified: 2021-02-09
 #===============================================================
 
 #===============================================================
@@ -31,18 +31,18 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-    nmap <Space> [denite]
-    nmap <Space>p [deniteProject]
-    nmap <silent> [denite]b :<C-u>Denite buffer<CR>
-    nmap <silent> [denite]g :<C-u>Denite grep<CR>
-    nmap <silent> [denite]m :<C-u>Denite file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
-    nmap <silent> [denite]f :<C-u>Denite file/rec<CR>
-    nmap <silent> [denite]d :<C-u>Denite directory_rec<CR>
-    nmap <silent> [deniteProject]b :<C-u>DeniteProject buffer<CR>
-    nmap <silent> [deniteProject]g :<C-u>DeniteProject grep<CR>
-    nmap <silent> [deniteProject]m :<C-u>DeniteProject file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
-    nmap <silent> [deniteProject]f :<C-u>DeniteProject file/rec<CR>
-    nmap <silent> [deniteProject]d :<C-u>DeniteProject directory_rec<CR>
+    nnoremap <Space> [denite]
+    nnoremap <Space>p [deniteProject]
+    nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+    nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
+    nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
+    nnoremap <silent> [denite]f :<C-u>Denite file/rec<CR>
+    nnoremap <silent> [denite]d :<C-u>Denite directory_rec<CR>
+    nnoremap <silent> [deniteProject]b :<C-u>DeniteProject buffer<CR>
+    nnoremap <silent> [deniteProject]g :<C-u>DeniteProject grep<CR>
+    nnoremap <silent> [deniteProject]m :<C-u>DeniteProject file_mru<CR> <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
+    nnoremap <silent> [deniteProject]f :<C-u>DeniteProject file/rec<CR>
+    nnoremap <silent> [deniteProject]d :<C-u>DeniteProject directory_rec<CR>
 '''
 hook_source = '''
     if executable('rg')
@@ -52,7 +52,7 @@ hook_source = '''
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'final_opts', [])
         call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+call        call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
     endif
     call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
     call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
@@ -90,8 +90,8 @@ depends = ['/vim-airline-themes']
 hook_add = '''
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#buffer_idx_mode = 1
-    nmap <C-p> <Plug>AirlineSelectPrevTab
-    nmap <C-n> <Plug>AirlineSelectNextTab
+    nnoremap <C-p> <Plug>AirlineSelectPrevTab
+    nnoremap <C-n> <Plug>AirlineSelectNextTab
 '''
 
 #===============================================================
@@ -115,7 +115,7 @@ hook_add = '''
 #===============================================================
 [[plugins]]
 repo = 'scrooloose/nerdtree'
-hook_source = '''
+hook_add = '''
     " 隠しファイルを設定する
     let NERDTreeShowHidden = 1
     nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -137,3 +137,12 @@ hook_add = '''
 #===============================================================
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
+#===============================================================
+# rust-lang/rust.vim
+#===============================================================
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_add = '''
+    let g:rustfmt_autosave = 1
+'''

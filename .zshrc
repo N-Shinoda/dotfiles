@@ -126,16 +126,16 @@ alias ..='cd ../'
 alias mkdir='mkdir -p'
 
 # rmコマンドでゴミ箱へ移動する
-if type trash-put &> /dev/null
-then
-    alias rm='trash-put'
-fi
+#if type trash-put &> /dev/null
+#then
+#    alias rm=trash-put
+#fi
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 
 # ssh to aurora-sv.local as gitadmin.
-alias ssh2gitadmin='ssh -i ~/.ssh/gitadmin_id_rsa -p 54322 gitadmin@192.168.11.30'
+# alias ssh2gitadmin='ssh -i ~/.ssh/gitadmin_id_rsa -p 54322 gitadmin@192.168.11.30'
 
 # グローバルエイリアス
 alias -g L='| less'
@@ -143,6 +143,7 @@ alias -g G='| grep'
 
 alias -g cl++='clang++'
 alias -g cl="clang"
+alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
 
 # C で標準出力をクリップボードにコピーする
 if which xsel >/dev/null 2>&1 ; then
@@ -158,8 +159,8 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-export DISPLAY=192.168.1.6:0
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+# export DISPLAY=192.168.1.6:0
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
@@ -182,3 +183,4 @@ export EDITOR=nvim
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

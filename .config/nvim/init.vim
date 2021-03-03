@@ -19,7 +19,7 @@ set runtimepath+=/usr/share/nvim/runtime
 " scriptencoding utf-8
 
 " プラグインが実際にインストールされるディレクトリ
-let g:rc_dir = expand('~/.vim/rc')
+let g:rc_dir = expand('~/.config/nvim')
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -39,7 +39,7 @@ if dein#load_state(s:dein_dir)
 
     " プラグインリストを収めた TOML ファイル
     " 予め TOML ファイルを用意しておく
-    let g:rc_dir    = expand('~/.vim/rc')
+    let g:rc_dir    = expand('~/.config/nvim')
     let s:toml      = g:rc_dir . '/dein.toml'
     let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
@@ -201,15 +201,6 @@ endif
 " コマンドを画面最下部に表示する
 set showcmd
 
-" タブ入力を複数の空白入力に置き換え
-set expandtab
-
-" 編集中のファイルが'Makefile'ならnoexpandtabにする
-let _curfile=expand("%:r")
-if _curfile == 'Makefile'
-    set noexpandtab
-endif
-
 " 画面上でタブ文字が占める幅
 set tabstop=4
 
@@ -218,6 +209,9 @@ set shiftwidth=4
 
 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set softtabstop=4
+
+" タブ入力を複数の空白入力に置き換え
+set expandtab
 
 " 改行時に前の行のインデントを継続する
 " set autoindent
@@ -231,5 +225,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 inoremap <Esc> <Esc>
 
 " ファイルを開いたときにタブ文字があったらスペースに変換
-autocmd BufNewFile,BufRead * set expandtab
-autocmd BufNewFile,BufRead * retab
+" autocmd BufNewFile,BufRead * set expandtab
+" autocmd BufNewFile,BufRead * retab
+
+" 編集中のファイルが'Makefile'ならnoexpandtabにする
+let _curfile=expand("%:r")
+if _curfile == 'Makefile'
+    set noexpandtab
+endif
