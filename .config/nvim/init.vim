@@ -1,7 +1,7 @@
 "===============================================================
 "   Description: init.vim
 "   Author: N-Shinoda
-"   Last Modified: 2019-08-28
+"   Last Modified: 2021-03-11
 "===============================================================
 
 " reset augroup
@@ -91,9 +91,6 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
-
-" NERDTreeToggle
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 "===============================================================
 "   editor

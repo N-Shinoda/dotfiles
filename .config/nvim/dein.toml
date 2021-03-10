@@ -1,7 +1,7 @@
 #===============================================================
 #   Description: dein.toml
 #   Author: N-Shinoda
-#   Last Modified: 2021-02-09
+#   Last Modified: 2021-03-11
 #===============================================================
 
 #===============================================================
@@ -101,12 +101,10 @@ hook_add = '''
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 hook_add = '''
-  set laststatus=2
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#whitespace#mixed_indent_algo = 1
-  let g:airline_theme = 'papercolor'
+    set laststatus=2
+    let g:airline_theme = 'iceberg'
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#whitespace#mixed_indent_algo = 1
 '''
 
 #===============================================================
@@ -118,6 +116,7 @@ repo = 'scrooloose/nerdtree'
 hook_add = '''
     " 隠しファイルを設定する
     let NERDTreeShowHidden = 1
+    " NERDTreeToggle
     nnoremap <silent><C-e> :NERDTreeToggle<CR>
 '''
 
