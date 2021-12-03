@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2020-11-17
+#   Last Modified: 2021-11-19
 #==================================================
 
 # 環境変数
@@ -141,7 +141,7 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 
-alias -g cl++='clang++'
+alias -g cl++='clang++ -std=c++17 -Wall --pedantic-errors'
 alias -g cl="clang"
 alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
 
@@ -169,19 +169,25 @@ export LIBGL_ALWAYS_INDIRECT=1
 # 全角記号などの表示の修正
 export VTE_CJK_WIDTH=1
 
-# 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
-export XDG_CONFIG_HOME="$HOME/.config/"
-export XDG_CACHE_HOME="$HOME/.cache/"
-
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:$PYENV_ROOT/bin"
-eval "$(pyenv init -)"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # for sudoedit
 export EDITOR=nvim
 
+# 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
+export XDG_CONFIG_HOME="$HOME/.config/"
+export XDG_CACHE_HOME="$HOME/.cache/"
+
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
