@@ -170,7 +170,8 @@ export LIBGL_ALWAYS_INDIRECT=1
 export VTE_CJK_WIDTH=1
 
 # pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -188,6 +189,7 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 
+# for nvm
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
