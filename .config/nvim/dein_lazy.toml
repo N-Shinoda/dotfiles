@@ -11,13 +11,13 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
-on_event = 'InsertEnter'
-hook_source = '''
-    let g:deoplete#enable_at_startup = 1
-    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-'''
+#on_event = 'InsertEnter'
+#hook_source = '''
+#    let g:deoplete#enable_at_startup = 1
+#    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+#        \ neosnippet#expandable_or_jumpable() ?
+#        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+#'''
 
 #===============================================================
 # zchee/deoplete-clang
@@ -26,26 +26,26 @@ hook_source = '''
 [[plugins]]
 repo = 'zchee/deoplete-clang'
 on_ft = ['c', 'cpp', 'cmake']
-hook_source = '''
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang-10.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
-'''
-depends = ['deoplete.nvim']
+#hook_source = '''
+#let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-10/lib/libclang-10.so.1'
+#let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+#'''
+#depends = ['deoplete.nvim']
 
 #===============================================================
 # Shougo/neosnippet.vim
 # スニッペット機能
 #===============================================================
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
+#[[plugins]]
+#repo = 'Shougo/neosnippet.vim'
 
 #===============================================================
 # Shougo/neosnippet-snippets
 # スニッペットを集めた定義ファイル群
 #===============================================================
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_source = ['neosnippet.vim']
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
+#on_source = ['neosnippet.vim']
 
 #===============================================================
 # Shougo/neoinclude.vim
@@ -78,8 +78,8 @@ depends = ['deoplete.nvim']
 # rhysd/vim-clang-format
 # C/C++の入力補完をしてくれるプラグイン
 #===============================================================
-[[plugins]]
-repo = 'rhysd/vim-clang-format'
-on_ft = 'cpp'
+#[[plugins]]
+#repo = 'rhysd/vim-clang-format'
+#on_ft = 'cpp'
 
 

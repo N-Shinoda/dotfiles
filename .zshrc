@@ -124,7 +124,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ..='cd ../'
 alias mkdir='mkdir -p'
-
+alias rm='rm -i'
+#alias rm="trash"
 # rmコマンドでゴミ箱へ移動する
 #if type trash-put &> /dev/null
 #then
@@ -159,9 +160,9 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-# resolve.confを上書きいしている場合
-export DISPLAY=$(route | grep default | awk '{print $2}'):0
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+# resolve.confを上書きしている場合
+# export DISPLAY=$(route | grep default | awk '{print $2}'):0
 
 # 必ずXming経由でOpenGLを使う
 export LIBGL_ALWAYS_INDIRECT=1
@@ -179,8 +180,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 # for sudoedit
 export EDITOR=nvim

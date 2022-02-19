@@ -1,0 +1,8 @@
+{
+    "languageserver": {
+        "coc-clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cc", "cpp"]
+        }
+    }
+}
