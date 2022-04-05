@@ -160,7 +160,7 @@ stty stop undef
 # vim:set ft=zsh:
 
 # 環境変数DISPLAYの設定
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 # resolve.confを上書きしている場合
 # export DISPLAY=$(route | grep default | awk '{print $2}'):0
 
@@ -194,3 +194,6 @@ export XDG_CACHE_HOME="$HOME/.cache/"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#
+export LIBGL_ALWAYS_INDIRECT=0

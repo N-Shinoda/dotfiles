@@ -23,3 +23,6 @@ inoremap <C-l> <Right>
 
 " 前のタブへ移動するショートカット「gT」を「gr」に変更
 nnoremap gr :tabprevious<CR>
+
+" Terminal のインサートモードを抜けるコマンドをESCにマッピング
+tnoremap <ESC> <C-\><C-n>

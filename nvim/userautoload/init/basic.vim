@@ -135,3 +135,11 @@ let _curfile=expand("%:r")
 if _curfile == 'Makefile'
     set noexpandtab
 endif
+
+" Terminalを現在のウィンドウの下に開く
+if has('nvim')
+    command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
+endif
+
+" 常にインサートモードでTerminalを開く
+autocmd TermOpen * startinsert
