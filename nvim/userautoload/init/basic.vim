@@ -121,6 +121,10 @@ set expandtab
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 " set smartindent
 
+" 改行時自動コメントアウトを無効にする
+setlocal formatoptions-=r
+setlocal formatoptions-=o
+
 " 挿入モードで縦棒カーソルを使う
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
