@@ -1,7 +1,7 @@
 "===============================================================
 "   Description: basic.vim
 "   Author: N-Shinoda
-"   Last Modified: 2022-02-16
+"   Last Modified: 2022-08-22
 "===============================================================
 
 " シンタックスハイライト
@@ -122,8 +122,10 @@ set expandtab
 " set smartindent
 
 " 改行時自動コメントアウトを無効にする
-setlocal formatoptions-=r
-setlocal formatoptions-=o
+" setlocal formatoptions-=r
+" setlocal formatoptions-=o
+
+au FileType * set fo-=c fo-=r fo-=o
 
 " 挿入モードで縦棒カーソルを使う
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
