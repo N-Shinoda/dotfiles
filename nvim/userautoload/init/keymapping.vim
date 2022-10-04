@@ -16,10 +16,10 @@ inoremap <C-y> <Del>
 inoremap <C-o> <ESC>o
 
 " 挿入モード中の移動
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+" inoremap <C-h> <Left>
+" inoremap <C-j> <Down>
+" inoremap <C-k> <Up>
+" inoremap <C-l> <Right>
 
 " 前のタブへ移動するショートカット「gT」を「gr」に変更
 nnoremap gr :tabprevious<CR>

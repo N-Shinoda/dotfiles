@@ -50,7 +50,8 @@ set noerrorbells
 " set belloff=all
 
 " OSのクリップボードを使う
-set clipboard=unnamedplus
+set clipboard&
+set clipboard^=unnamedplus
 
 " 不可視文字を表示
 set list
