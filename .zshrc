@@ -1,15 +1,11 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2021-11-19
+#   Last Modified: 2022-11-07
 #==================================================
 
 # 環境変数
 export LANG=ja_JP.UTF-8
-
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
 
 # emacs 風キーバインドにする
 bindkey -e
@@ -19,12 +15,9 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~
-%# "
+# 色を使用出来るようにする
+autoload -Uz colors
+colors
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -45,11 +38,16 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 
 # sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*:sudo:*' $path
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
+# プロンプト
+# PROMPT="%~ %# "
+# 2行表示
+PROMPT="%{${fg[cyan]}%}[%n@%m]%{${reset_color}%} %~
+%# "
 
 # vcs_info
 autoload -Uz vcs_info
@@ -59,8 +57,8 @@ zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
 zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
 
 function _update_vcs_info_msg() {
-    LANG=en_US.UTF-8 vcs_info
-    RPROMPT="${vcs_info_msg_0_}"
+  LANG=en_US.UTF-8 vcs_info
+  RPROMPT="${vcs_info_msg_0_}"
 }
 add-zsh-hook precmd _update_vcs_info_msg
 
@@ -115,22 +113,12 @@ bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
 # エイリアス
-# eval `dircolors ~/.colorrc`
-alias ls='ls -F --color=auto'
 alias la='ls -a'
-# alias ll='ls -la'
-alias ll='ls -la --time-style="+%Y-%m-%d %H:%M:%S"'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ..='cd ../'
 alias mkdir='mkdir -p'
 alias rm='rm -i'
-#alias rm="trash"
-# rmコマンドでゴミ箱へ移動する
-#if type trash-put &> /dev/null
-#then
-#    alias rm=trash-put
-#fi
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
@@ -141,34 +129,13 @@ alias sudo='sudo '
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
-
 alias -g cl++='clang++ -std=c++17 -Wall --pedantic-errors'
-alias -g cl="clang"
-alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
-
-# C で標準出力をクリップボードにコピーする
-if which xsel >/dev/null 2>&1 ; then
-    alias -g C='| xsel --input --clipboard'
-fi
 
 # シェルの再起動
 alias relogin='exec $SHELL -l'
 
 # Ctrl + s
 stty stop undef
-
-# vim:set ft=zsh:
-
-# 環境変数DISPLAYの設定
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-# resolve.confを上書きしている場合
-# export DISPLAY=$(route | grep default | awk '{print $2}'):0
-
-# 必ずXming経由でOpenGLを使う
-export LIBGL_ALWAYS_INDIRECT=1
-
-# 全角記号などの表示の修正
-export VTE_CJK_WIDTH=1
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -190,10 +157,16 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 
-# for nvm
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# OS別の設定
+case ${OSTYPE} in
+  darwin*)
+    #Mac用の設定
+    source "$HOME/.zsh.d/.zshrc_mac"
+    ;;
+  linux*)
+    #Linux用の設定
+    source "$HOME/.zsh.d/.zshrc_linux"
+    ;;
+esac
 
-#
-export LIBGL_ALWAYS_INDIRECT=0
+# vim:set ft=zsh:
