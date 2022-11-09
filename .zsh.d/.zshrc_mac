@@ -20,6 +20,7 @@ path=(
 
 # エイリアス
 alias ls='ls -G -F'
+alias ll='ls -lTa'
 # sdl2
 alias -g sdl='cl++ -F/Library/Frameworks -framework SDL2'
 
