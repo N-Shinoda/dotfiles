@@ -196,6 +196,7 @@ bindkey '^[[4~' end-of-line
 
 # エイリアス
 alias la='ls -a'
+alias ll='ls -la --time-style="+%Y-%m-%d %H:%M:%S"'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ..='cd ../'
