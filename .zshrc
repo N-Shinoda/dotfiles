@@ -98,7 +98,7 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 # プロンプト
 function left-prompt {
   name_t='179m%}'             # user name text color
-  name_b='016m%}'             # user name background color
+  name_b='235m%}'             # user name background color
   path_t='255m%}'             # path text color
   path_b='031m%}'             # path background color
   arrow='245m%}'              # arrow color
