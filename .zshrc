@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2022-11-11
+#   Last Modified: 2022-11-15
 #==================================================
 
 # 環境変数
@@ -95,90 +95,7 @@ zstyle ':completion:*:sudo:*' $path
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
-# プロンプト
-function left-prompt {
-  name_t='179m%}'             # user name text color
-  name_b='235m%}'             # user name background color
-  path_t='255m%}'             # path text color
-  path_b='031m%}'             # path background color
-  arrow='245m%}'              # arrow color
-  text_color='%{\e[38;5;'     # set text color
-  back_color='%{\e[30;48;5;'  # set background color
-  reset='%{\e[0m%}'           # reset
-  sharp="\uE0B0"              # triangle
-
-  user="${back_color}${name_b}${text_color}${name_t}"
-  dir="${back_color}${path_b}${text_color}${path_t}"
-  echo "${user}%n%#@%m${back_color}${path_b}${text_color}${name_b}${sharp} ${dir}%~${reset}${text_color}${path_b}${sharp} ${reset}\n${text_color}${arrow}> ${reset}"
-}
-
-PROMPT=`left-prompt`
-
-# コマンドの実行ごとに改行
-function precmd() {
-  # Print a newline before the prompt, unless it's the'
-  # first prompt in the process.
-  if [ -z "$NEW_LINE_BEFORE_PROMPT" ]; then
-    NEW_LINE_BEFORE_PROMPT=1
-  elif [ "$NEW_LINE_BEFORE_PROMPT" -eq 1 ]; then
-    echo ""
-  fi
-}
-
-# gitブランチ名を色付きで表示させる
-function rprompt-git-current-branch {
-  local branch_name st branch_status
-
-  branch='\ue0a0'
-  color='%{\e[38;5;'  # 文字色を設定
-  green='114m%}'
-  red='001m%}'
-  yellow='227m%}'
-  blue='031m%}'
-  reset='%{\e[0m%}'   # reset
-
-  color='%{\e[38;5;'  # 文字色を設定
-  green='114m%}'
-
-  # ブランチマーク
-  if [ ! -e ".git" ]; then
-    # git 管理されていないディレクトリは何も返さない
-    return
-  fi
-    branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
-    st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    # 全て commit されてクリーンな状態
-    branch_status="${color}${green}${branch}"
-  elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
-    # git 管理されていないファイルがある状態
-    branch_status="${color}${red}${branch}?"
-  elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
-    # git add されていないファイルがある状態
-    branch_status="${color}${red}${branch}+"
-  elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
-    # git commit されていないファイルがある状態
-    branch_status="${color}${yellow}${branch}!"
-  elif [[ -n `echo "$st" | grep "^rebase in progress"` ]]; then
-    # コンフリクトが起こった状態
-    echo "${color}${red}${branch} !(no branch)${reset}"
-    return
-  else
-    # 上記以外の状態の場合
-    branch_status="${color}${blue}${branch}"
-  fi
-
-  # ブランチ名を色付きで表示する
-  echo "${branch_status} $branch_name${reset}"
-}
-
-# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-setopt prompt_subst
-
-# プロンプトの右側にメソッドの結果を表示させる
-RPROMPT='`rprompt-git-current-branch`'
-
-# vcs_info
+# # vcs_info
 # autoload -Uz vcs_info
 # autoload -Uz add-zsh-hook
 
@@ -186,10 +103,39 @@ RPROMPT='`rprompt-git-current-branch`'
 # zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
 
 # function _update_vcs_info_msg() {
-#  LANG=en_US.UTF-8 vcs_info
-#  RPROMPT="${vcs_info_msg_0_}"
+#   LANG=en_US.UTF-8 vcs_info
+#   RPROMPT="${vcs_info_msg_0_}"
 # }
 # add-zsh-hook precmd _update_vcs_info_msg
+
+# PROMPT
+setopt prompt_subst # プロンプト表示
+
+precmd() {
+  if [ -n "$(git status --short 2>/dev/null)" ]; then
+    export GIT_HAS_DIFF="✗"
+    export GIT_NON_DIFF=""
+  else
+    export GIT_HAS_DIFF=""
+    export GIT_NON_DIFF="✔"
+  fi
+  # git管理されているか確認
+  git status --porcelain >/dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    export GIT_HAS_DIFF=""
+    export GIT_NON_DIFF=""
+  fi
+  export BRANCH_NAME=$(git branch --show-current 2>/dev/null)
+}
+
+# 末尾に空白をつけることで改行される
+PROMPT="
+%{${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~"
+PROMPT=${PROMPT}'%F{green}  ${BRANCH_NAME} ${GIT_NON_DIFF}%F{red}${GIT_HAS_DIFF}
+%f$ '
+
+# PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~
+# %# "
 
 # エイリアス
 alias la='ls -a'
@@ -216,30 +162,24 @@ alias relogin='exec $SHELL -l'
 # Ctrl + s
 stty stop undef
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# rbenv
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-
 # for sudoedit
 export EDITOR=nvim
 
-# 環境変数XDG_CONFIG_HOMEの設定（NeoVim用）
+# 環境変数XDG_CONFIG_HOMEの設定
 export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 
-# for nvm
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init --path)"
+
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # OS別の設定
 case ${OSTYPE} in
