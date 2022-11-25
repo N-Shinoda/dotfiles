@@ -1,0 +1,31 @@
+{
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.noselect": false,
+    "suggest.minTriggerInputLength": 2,
+    "suggest.acceptSuggestionOnCommitCharacter": true,
+    "suggest.snippetIndicator": " ►",
+    "suggest.enablePreview": true,
+    "coc.preference.hoverTarget": "float",
+    "coc.preference.formatOnType": true,
+    "coc.preference.formatOnSaveFiletypes": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+    ],
+    "tsserver.formatOnType": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+
+    "languageserver": {
+        "coc-clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cc", "cpp"]
+        }
+    }
+}

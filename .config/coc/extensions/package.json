@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "coc-clangd": ">=0.24.0",
+    "coc-tsserver": ">=2.0.2"
+  },
+  "disabled": [],
+  "locked": [],
+  "lastUpdate": 1668067885985
+}

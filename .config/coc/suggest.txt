@@ -1,0 +1,17 @@
+Shu|ShutDown|clangd
+RunL|RunLoop|clangd
+succe|success|clangd
+Ini|Initialize|clangd
+Generate|GenerateOutput|clangd
+ProcessInpu|ProcessInput|clangd
+mIsRu|mIsRunning|clangd
+SDL_Quit|SDL_Quit|languageserver.coc-clangd
+mWin|mWindow|clangd
+SDL_DestroyWind|SDL_DestroyWindow|clangd
+Shut|ShutDown|clangd
+SDL_GetErr|SDL_GetError|clangd
+SDL_CreateWin|SDL_CreateWindow|clangd
+SDL_GetE|SDL_GetError|clangd
+sdlRe|sdlResult|clangd
+SDL_INIT_VI|SDL_INIT_VIDEO|clangd
+Initi|Initialize|clangd

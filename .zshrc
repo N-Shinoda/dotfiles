@@ -78,8 +78,6 @@ zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
 # 補完機能を有効にする
-fpath=(~/.zsh.d/completion $fpath)
-
 autoload -Uz compinit
 compinit
 
@@ -94,19 +92,6 @@ zstyle ':completion:*:sudo:*' $path
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-# # vcs_info
-# autoload -Uz vcs_info
-# autoload -Uz add-zsh-hook
-
-# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-# zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-
-# function _update_vcs_info_msg() {
-#   LANG=en_US.UTF-8 vcs_info
-#   RPROMPT="${vcs_info_msg_0_}"
-# }
-# add-zsh-hook precmd _update_vcs_info_msg
 
 # PROMPT
 setopt prompt_subst # プロンプト表示
@@ -129,13 +114,10 @@ precmd() {
 }
 
 # 末尾に空白をつけることで改行される
-PROMPT="
-%{${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~"
+PROMPT='
+${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~'
 PROMPT=${PROMPT}'%F{green}  ${BRANCH_NAME} ${GIT_NON_DIFF}%F{red}${GIT_HAS_DIFF}
 %f$ '
-
-# PROMPT="%{${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~
-# %# "
 
 # エイリアス
 alias la='ls -a'
@@ -170,13 +152,13 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 
 # pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -185,11 +167,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 case ${OSTYPE} in
   darwin*)
     #Mac用の設定
-    source "$HOME/.zsh.d/.zshrc_mac"
+    source "$HOME/.zsh.d/mac.zsh"
     ;;
   linux*)
     #Linux用の設定
-    source "$HOME/.zsh.d/.zshrc_linux"
+    source "$HOME/.zsh.d/linux.zsh"
     ;;
 esac
 
