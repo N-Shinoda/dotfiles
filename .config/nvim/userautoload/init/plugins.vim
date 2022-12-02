@@ -6,8 +6,9 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
     " colorscheme
-    Plug 'cocopon/iceberg.vim'
+    " Plug 'cocopon/iceberg.vim'
     Plug 'tomasiser/vim-code-dark'
+    Plug 'morhetz/gruvbox'
     " インデントを見やすくする
     Plug 'Yggdroot/indentLine'
     " 閉じ括弧を補完する
@@ -26,9 +27,14 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'elzr/vim-json'
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " 末尾の無駄なスペースをハイライト／削除する
+    Plug 'bronson/vim-trailing-whitespace'
 
 call plug#end()
 
-if filereadable(expand("~/.local/share/nvim/plugged/iceberg.vim/colors/iceberg.vim"))
-    colorscheme iceberg
-endif
+
+" if filereadable(expand("~/.local/share/nvim/plugged/iceberg.vim/colors/iceberg.vim"))
+"     colorscheme iceberg
+" endif
+
+colorscheme codedark

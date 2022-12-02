@@ -1,13 +1,8 @@
 "===============================================================
 "   Description: basic.vim
 "   Author: N-Shinoda
-"   Last Modified: 2022-11-14
+"   Last Modified: 2022-11-27
 "===============================================================
-
-" シンタックスハイライト
-if has("syntax")
-    syntax on
-endif
 
 " エンコード
 set encoding=utf-8
@@ -21,14 +16,14 @@ scriptencoding utf-8
 set laststatus=2
 
 " オムニ補完
-setlocal omnifunc=syntaxcomplete#Complete
+" setlocal omnifunc=syntaxcomplete#Complete
 
 " 256色使用
 " set t_Co=256
 
 " 背景色に合わせた色を自動的に設定する
-set background=dark
-" set background=light 
+" set background=dark
+" set background=light
 
 " 改行コードの自動認識
 set fileformats=unix
@@ -44,16 +39,15 @@ set nobackup
 set nowritebackup
 
 " バックスペースで各種消せるようにする
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
 
 " ビープ音を消す
-set visualbell t_vb=
-set noerrorbells
+" set visualbell t_vb=
+" set noerrorbells
 " set belloff=all
 
 " OSのクリップボードを使う
-set clipboard&
-set clipboard^=unnamedplus
+set clipboard+=unnamedplus
 
 " 不可視文字を表示
 set list
@@ -94,7 +88,6 @@ set smartcase
 
 " 検索結果をハイライト表示する
 set hlsearch
-
 " 検索時、大文字と小文字を無視
 set ignorecase
 
@@ -105,9 +98,9 @@ set history=10000
 set mouse=a
 
 " xtermとscreen対応（NeoVimでは削除されたので、読み込まないようにする）
-if !has('nvim')
-    set ttymouse=xterm2
-endif
+" if !has('nvim')
+"     set ttymouse=xterm2
+" endif
 
 " コマンドを画面最下部に表示する
 set showcmd
@@ -139,15 +132,18 @@ set cursorline
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 " set smartindent
 
+" True Colorを使用するため
+set termguicolors
+
 " 改行時自動コメントアウトを無効にする
 au FileType * set fo-=c fo-=r fo-=o
 " setlocal formatoptions-=r
 " setlocal formatoptions-=o
 
 " 挿入モードで縦棒カーソルを使う
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-inoremap <Esc> <Esc>
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" inoremap <Esc> <Esc>
 
 " ファイルを開いたときにタブ文字があったらスペースに変換
 " autocmd BufNewFile,BufRead * set expandtab
@@ -160,12 +156,15 @@ if _curfile == 'Makefile'
 endif
 
 " Terminalを現在のウィンドウの下に開く
-if has('nvim')
-    command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
-endif
+" if has('nvim')
+"     command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
+" endif
 
 " Yank時にclip.exeと自動で同期
 " augroup Yank
 "    au!
 "    autocmd TextYankPost * :call system('clip.exe', @")
 " augroup END
+
+" python3_host_prog
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python'

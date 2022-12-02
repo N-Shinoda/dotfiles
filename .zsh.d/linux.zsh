@@ -31,3 +31,6 @@ export VTE_CJK_WIDTH=1
 
 # WSLg
 export LIBGL_ALWAYS_INDIRECT=0
+
+# tmux
+export TERM=screen-256color
