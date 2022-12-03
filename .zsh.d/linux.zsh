@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc_linux
 #   Author: n-shinoda
-#   Last Modified: 2022-11-07
+#   Last Modified: 2022-12-03
 #==================================================
 
 # エイリアス
@@ -14,6 +14,12 @@ alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib 
 # C で標準出力をクリップボードにコピーする
 if which xsel >/dev/null 2>&1 ; then
   alias -g pbcopy='| xsel --clipboard --input'
+fi
+
+# rmコマンドでゴミ箱へ移動するようにする
+if type trash-put &> /dev/null
+then
+    alias rm=trash-put
 fi
 
 # 環境変数DISPLAYの設定
