@@ -29,6 +29,9 @@ if which pbcopy >/dev/null 2>&1 ; then
   alias -g C='| pbcopy'
 fi
 
+# asdf
+. /usr/local/opt/asdf/libexec/asdf.sh
+
 # ls command color
 export CLICOLOR=1
 
