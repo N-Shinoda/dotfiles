@@ -65,6 +65,18 @@ setopt extended_glob
 # zsh: no matches found:
 setopt nonomatch
 
+# OS別の設定
+case ${OSTYPE} in
+  darwin*)
+    #Mac用の設定
+    source "$HOME/.zsh.d/mac.zsh"
+    ;;
+  linux*)
+    #Linux用の設定
+    source "$HOME/.zsh.d/linux.zsh"
+    ;;
+esac
+
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -78,8 +90,7 @@ zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
 # 補完機能を有効にする
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -151,29 +162,8 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config/"
 export XDG_CACHE_HOME="$HOME/.cache/"
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# OS別の設定
-case ${OSTYPE} in
-  darwin*)
-    #Mac用の設定
-    source "$HOME/.zsh.d/mac.zsh"
-    ;;
-  linux*)
-    #Linux用の設定
-    source "$HOME/.zsh.d/linux.zsh"
-    ;;
-esac
 
 # vim:set ft=zsh:
 

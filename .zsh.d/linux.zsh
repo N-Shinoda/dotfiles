@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc_linux
 #   Author: n-shinoda
-#   Last Modified: 2022-12-03
+#   Last Modified: 2022-12-04
 #==================================================
 
 # エイリアス
@@ -17,20 +17,20 @@ if which xsel >/dev/null 2>&1 ; then
 fi
 
 # rmコマンドでゴミ箱へ移動するようにする
-if type trash-put &> /dev/null
-then
-    alias rm=trash-put
-fi
+# if type trash-put &> /dev/null
+# then
+#     alias rm=trash-put
+# fi
 
 # 環境変数DISPLAYの設定
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 # resolve.confを上書きしている場合
 # export DISPLAY=$(route | grep default | awk '{print $2}'):0
 
-# for nvm
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# for asdf
+. $HOME/.asdf/asdf.sh
+# fpathに補完を追加する
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # 全角記号などの表示の修正
 export VTE_CJK_WIDTH=1
