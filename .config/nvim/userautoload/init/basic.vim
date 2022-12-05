@@ -155,16 +155,19 @@ if _curfile == 'Makefile'
     set noexpandtab
 endif
 
-" Terminalを現在のウィンドウの下に開く
-" if has('nvim')
-"     command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
-" endif
-
-" Yank時にclip.exeと自動で同期
-" augroup Yank
-"    au!
-"    autocmd TextYankPost * :call system('clip.exe', @")
-" augroup END
-
 " python3_host_prog
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
+let g:python3_host_prog = '~/.asdf/installs/python/3.11.0/bin/python'
+
+" neovimにtmuxバッファとシステムクリップボードの両方をレジスタとして使用させる
+let g:clipboard = {
+  \   'name': 'TmuxClipboard',
+  \   'copy': {
+  \      '*': ['tmux', 'load-buffer', '-w', '-'],
+  \      '+': ['tmux', 'load-buffer', '-w', '-'],
+  \   },
+  \   'paste': {
+  \      '*': ['tmux', 'save-buffer', '-'],
+  \      '+': ['tmux', 'save-buffer', '-'],
+  \   },
+  \   'cache_enabled': 1,
+  \ }
