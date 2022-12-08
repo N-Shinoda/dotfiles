@@ -1,7 +1,6 @@
 "===============================================================
-"   Description: vim-fugitive-config.vim
+"   Description: vim-gitgutter.vim
 "   Author: N-Shinoda
-"   Last Modified: 2022-02-18
+"   Last Modified: 2022-12-07
 "===============================================================
 
-let g:vim_json_syntax_conceal=0
