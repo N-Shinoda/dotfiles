@@ -22,6 +22,12 @@
         "typescriptreact"
     ],
 
+    "jedi": {
+        "enable": true,
+        "startupMessage": false,
+        "evecutable.command": "jedi-language-server"
+    },
+
     "languageserver": {
         "coc-clangd": {
             "command": "clangd",
