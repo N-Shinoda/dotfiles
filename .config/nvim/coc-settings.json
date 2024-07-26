@@ -29,9 +29,23 @@
     },
 
     "languageserver": {
-        "coc-clangd": {
-            "command": "clangd",
-            "filetypes": ["c", "cc", "cpp"]
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cc", "cpp"],
+            "rootPatterns": [".ccls", ".ccls-root", "compile_commands.json"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls-cache"
+                },
+                "compilationDatabaseDirectory": ""
+            },
+            "capabilities": {
+                "workspace": {
+                    "symbol": {
+                        "dynamicRegistration": true
+                    }
+                }
+            }
         }
     }
 }

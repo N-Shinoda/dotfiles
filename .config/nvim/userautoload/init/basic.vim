@@ -156,7 +156,7 @@ if _curfile == 'Makefile'
 endif
 
 " python3_host_prog
-let g:python3_host_prog = '~/.asdf/installs/python/3.11.0/bin/python'
+let g:python3_host_prog = '~/.asdf/installs/python/3.12.1/bin/python'
 
 " neovimにtmuxバッファとシステムクリップボードの両方をレジスタとして使用させる
 let g:clipboard = {

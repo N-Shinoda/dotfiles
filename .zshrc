@@ -148,6 +148,7 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 alias -g cl++='clang++ -std=c++17 -Wall --pedantic-errors'
+alias -g pip-review="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
 # シェルの再起動
 alias relogin='exec $SHELL -l'
@@ -171,3 +172,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if (which zprof > /dev/null 2>&1) ;then
     zprof
 fi
+
+# for openjdk-17
+JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+export JAVA_HOME
+PATH=$PATH:$JAVA_HOME/bin
+export PATH
