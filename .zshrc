@@ -23,6 +23,9 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+# Ctrl + s
+stty stop undef
+
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
 
@@ -65,18 +68,6 @@ setopt extended_glob
 # zsh: no matches found:
 setopt nonomatch
 
-# OS別の設定
-case ${OSTYPE} in
-  darwin*)
-    #Mac用の設定
-    source "$HOME/.zsh.d/mac.zsh"
-    ;;
-  linux*)
-    #Linux用の設定
-    source "$HOME/.zsh.d/linux.zsh"
-    ;;
-esac
-
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
@@ -89,6 +80,8 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
+# fpathに補完を追加する
+fpath=(${ASDF_DIR}/completions $fpath)
 # 補完機能を有効にする
 autoload -Uz compinit && compinit
 
@@ -132,6 +125,8 @@ PROMPT=${PROMPT}'%F{green}  ${BRANCH_NAME} ${GIT_NON_DIFF}%F{red}${GIT_HAS_DIFF}
 
 # エイリアス
 alias la='ls -a'
+alias ls='ls -F --color=auto'
+alias ll='ls -la --time-style="+%Y-%m-%d %H:%M:%S"'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ..='cd ../'
@@ -141,8 +136,8 @@ alias rm='rm -i'
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 
-# ssh to aurora-sv.local as gitadmin.
-# alias ssh2gitadmin='ssh -i ~/.ssh/gitadmin_id_rsa -p 54322 gitadmin@192.168.11.30'
+# シェルの再起動
+alias relogin='exec $SHELL -l'
 
 # グローバルエイリアス
 alias -g L='| less'
@@ -150,11 +145,17 @@ alias -g G='| grep'
 alias -g cl++='clang++ -std=c++17 -Wall --pedantic-errors'
 alias -g pip-review="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
-# シェルの再起動
-alias relogin='exec $SHELL -l'
+alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
 
-# Ctrl + s
-stty stop undef
+# C で標準出力をクリップボードにコピーする
+if which xsel >/dev/null 2>&1 ; then
+  alias -g pbcopy='| xsel --clipboard --input'
+fi
+
+# for profiling
+if (which zprof > /dev/null 2>&1) ;then
+    zprof
+fi
 
 # for sudoedit
 export EDITOR=nvim
@@ -168,13 +169,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # vim:set ft=zsh:
 
-# for profiling
-if (which zprof > /dev/null 2>&1) ;then
-    zprof
-fi
+# 全角記号などの表示の修正
+export VTE_CJK_WIDTH=1
 
-# for openjdk-17
-JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
-export JAVA_HOME
-PATH=$PATH:$JAVA_HOME/bin
-export PATH
+# WSLg
+export LIBGL_ALWAYS_INDIRECT=0
+
+# tmux
+export TERM=screen-256color
