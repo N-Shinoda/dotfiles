@@ -1,11 +1,135 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2022-11-15
+#   Last Modified: 2025-02-28
 #==================================================
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="kphoen"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+plugins=(git aliases copypath history docker github composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # 環境変数
 export LANG=ja_JP.UTF-8
+
+# 全角記号などの表示の修正
+export VTE_CJK_WIDTH=1
+
+# WSLg
+export LIBGL_ALWAYS_INDIRECT=0
+
+# tmux
+# export TERM=screen-256color
+
+# neovim
+export PATH=$PATH:$HOME/.local/bin
+
+# for sudoedit
+export EDITOR=nvim
+
+# 環境変数XDG_CONFIG_HOMEの設定
+export XDG_CONFIG_HOME="$HOME/.config/"
+export XDG_CACHE_HOME="$HOME/.cache/"
 
 # キーバインド
 # emacs 風キーバインドにする
@@ -80,8 +204,6 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
-# fpathに補完を追加する
-fpath=(${ASDF_DIR}/completions $fpath)
 # 補完機能を有効にする
 autoload -Uz compinit && compinit
 
@@ -96,32 +218,6 @@ zstyle ':completion:*:sudo:*' $path
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-# PROMPT
-setopt prompt_subst # プロンプト表示
-
-precmd() {
-  if [ -n "$(git status --short 2>/dev/null)" ]; then
-    export GIT_HAS_DIFF="✗"
-    export GIT_NON_DIFF=""
-  else
-    export GIT_HAS_DIFF=""
-    export GIT_NON_DIFF="✔"
-  fi
-  # git管理されているか確認
-  git status --porcelain >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    export GIT_HAS_DIFF=""
-    export GIT_NON_DIFF=""
-  fi
-  export BRANCH_NAME=$(git branch --show-current 2>/dev/null)
-}
-
-# 末尾に空白をつけることで改行される
-PROMPT='
-${fg[yellow]}%}[%n@%m]%{${reset_color}%} %~'
-PROMPT=${PROMPT}'%F{green}  ${BRANCH_NAME} ${GIT_NON_DIFF}%F{red}${GIT_HAS_DIFF}
-%f$ '
 
 # エイリアス
 alias la='ls -a'
@@ -142,38 +238,22 @@ alias relogin='exec $SHELL -l'
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
-alias -g cl++='clang++ -std=c++17 -Wall --pedantic-errors'
+alias -g cl++='clang++ -std=c++20 -Wall --pedantic-errors'
 alias -g pip-review="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
 alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
-
-# C で標準出力をクリップボードにコピーする
-if which xsel >/dev/null 2>&1 ; then
-  alias -g pbcopy='| xsel --clipboard --input'
-fi
 
 # for profiling
 if (which zprof > /dev/null 2>&1) ;then
     zprof
 fi
 
-# for sudoedit
-export EDITOR=nvim
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
-# 環境変数XDG_CONFIG_HOMEの設定
-export XDG_CONFIG_HOME="$HOME/.config/"
-export XDG_CACHE_HOME="$HOME/.cache/"
-
-# rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# vim:set ft=zsh:
-
-# 全角記号などの表示の修正
-export VTE_CJK_WIDTH=1
-
-# WSLg
-export LIBGL_ALWAYS_INDIRECT=0
-
-# tmux
-export TERM=screen-256color
+# nvm
+export NVM_DIR="$HOME/.config//nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
