@@ -1,3 +1,32 @@
-# for backup at 20180203
-*.bak/
-.config/coc/
+# 一時ファイル
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# NeoVim (adjust paths to your environment)
+lazy-lock.json
+nvim-data/
+.config/nvim/lazy-lock.json
+.config/nvim/plugin/*.lua~
+.config/nvim/*.bak
+
+# Cache / Logs
+.cache/
+config/*/cache/
+config/*/logs/
+
+# Secrets
+*.key
+*.pem
+*.crt
+secrets.env
