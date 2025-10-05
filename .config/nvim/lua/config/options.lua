@@ -70,4 +70,4 @@ vim.g.nvim_tree_icons = {
       symlink = "",
     },
   }
-vim.g.python3_host_prog = "/home/n-shinoda/.pyenv/versions/3.13.0/bin/python"
+vim.g.python3_host_prog = "/home/n-shinoda/.pyenv/versions/3.13.2/bin/python"

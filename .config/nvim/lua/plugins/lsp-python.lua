@@ -3,8 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {}, -- Python LSP
-        clangd = {},  -- C/C++ LSP
+        pyright = {},
       },
     },
   },
