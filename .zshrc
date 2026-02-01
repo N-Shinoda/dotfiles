@@ -260,3 +260,6 @@ export NVM_DIR="$HOME/.config//nvm"
 
 # rust
 source "$HOME/.cargo/env"
+
+# poetry
+export PATH="$HOME/.local/bin:$PATH"
