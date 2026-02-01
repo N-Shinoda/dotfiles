@@ -46,7 +46,13 @@ vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', term_opts)
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', term_opts)
 
 -- Neotree
-vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Explorer" })
-vim.keymap.set("n", "<leader>ef", ":Neotree filesystem reveal left<CR>", { desc = "Open File Explorer" })
-vim.keymap.set("n", "<leader>eb", ":Neotree buffers right<CR>", { desc = "Open Buffer Explorer" })
-vim.keymap.set("n", "<leader>eg", ":Neotree git_status float<CR>", { desc = "Open Git Status" })
+-- Neo-treeを開く／閉じる
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Neotree Toggle" })
+-- Neo-treeにフォーカス
+vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>", { desc = "Focus Neo-tree" })
+-- ファイルツリー
+vim.keymap.set("n", "<leader>fe", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Neo-tree filesystem" })
+-- Gitステータス
+vim.keymap.set("n", "<leader>fg", "<cmd>Neotree git_status reveal left<CR>", { desc = "Neo-tree Git status" })
+-- バッファ一覧
+vim.keymap.set("n", "<leader>fb", "<cmd>Neotree buffers reveal left<CR>", { desc = "Neo-tree Buffers" })
