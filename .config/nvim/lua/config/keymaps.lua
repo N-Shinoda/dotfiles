@@ -18,6 +18,25 @@ vim.keymap.set("n", "L", "$", opts)
 vim.keymap.set("n", "<leader>w", ":w<CR>", term_opts)
 vim.keymap.set("n", "<leader>q", ":q<CR>", term_opts)
 
+-- 次のバッファ
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
+-- 前のバッファ
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
+-- 空の新規バッファ
+vim.keymap.set("n", "<leader>bn", ":enew<CR>", opts)
+-- 新規ファイルを開く（カレントディレクトリ）
+vim.keymap.set("n", "<leader>bf", ":edit", {noremap = true})
+-- バッファを閉じる／削除
+vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", opts)
+-- 強制削除（未保存でも）
+vim.keymap.set("n", "<leader>bD", ":bdelete!<CR>", opts )
+-- 他のバッファをすべて閉じる
+vim.keymap.set("n", "<leader>bo", ":%bdelete|edit #|normal `\"", opts)
+-- バッファ一覧を表示
+vim.keymap.set("n", "<leader>bl", ":ls<CR>", opts)
+-- バッファを閉じてウィンドウも閉じる（q相当）
+vim.keymap.set("n", "<leader>bq", ":quit<CR>", opts)
+
 -- Yを y$に変更（デフォルトの yyを修正）
 vim.keymap.set("n", "Y", "y$", term_opts)
 
