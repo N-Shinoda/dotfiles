@@ -50,6 +50,25 @@ autocmd("FileType", {
   end,
 })
 
+-- グローバル変数に直前のタブのバッファ番号を保存
+local last_tab_buffer = nil
+
+-- タブを離れるときに現在のバッファ番号を記録
+autocmd("TabLeave", {
+  callback = function()
+    last_tab_buffer = vim.api.nvim_get_current_buf()
+  end,
+})
+
+-- タブが閉じられたら、そのときのバッファをbdelete
+autocmd("TabClosed", {
+  callback = function()
+    if last_tab_buffer and vim.api.nvim_buf_is_loaded(last_tab_buffer) then
+      vim.cmd("bdelete " .. last_tab_buffer)
+    end
+  end,
+})
+
 -- 自動でNetoTreeを開く
 --[[
 autocmd("VimEnter", {
