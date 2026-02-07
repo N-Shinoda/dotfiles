@@ -35,6 +35,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 -- display
+vim.opt.relativenumber = false
 vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.showtabline = 2 -- Show tabline(1: Always visible, 2: Show when tab is opened).
