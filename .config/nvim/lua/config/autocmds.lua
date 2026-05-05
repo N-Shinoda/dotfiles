@@ -50,6 +50,15 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("FileType", {
+  pattern = { "asm", "nasm", "gas", "masm" },
+  callback = function()
+    vim.bo.shiftwidth = 8
+    vim.bo.tabstop = 8
+    vim.bo.expandtab = false -- アセンブリはタブ派が多い
+  end,
+})
+
 -- グローバル変数に直前のタブのバッファ番号を保存
 local last_tab_buffer = nil
 
