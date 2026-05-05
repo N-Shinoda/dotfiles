@@ -53,9 +53,9 @@ autocmd("FileType", {
 autocmd("FileType", {
   pattern = { "asm", "nasm", "gas", "masm" },
   callback = function()
-    vim.bo.shiftwidth = 8
-    vim.bo.tabstop = 8
-    vim.bo.expandtab = false -- アセンブリはタブ派が多い
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.expandtab = true
   end,
 })
 
