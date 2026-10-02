@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2025-02-28
+#   Last Modified: 2026-10-03
 #==================================================
 
 # If you come from bash you might have to change your $PATH.
@@ -77,7 +77,7 @@ ZSH_THEME="kphoen"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins=(git aliases copypath history docker github composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git aliases copypath history docker gh composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
