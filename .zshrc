@@ -1,7 +1,7 @@
 #==================================================
 #   Description: .zshrc
 #   Author: n-shinoda
-#   Last Modified: 2026-10-03
+#   Last Modified: 2026-11-19
 #==================================================
 
 # If you come from bash you might have to change your $PATH.
@@ -76,8 +76,21 @@ ZSH_THEME="kphoen"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-plugins=(git aliases copypath history docker gh composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+    git
+    aliases
+    copypath
+    history
+    docker
+    gh
+    composer
+    laravel
+    brew
+    zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -109,88 +122,72 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# 環境変数
-export LANG=ja_JP.UTF-8
-
-# 全角記号などの表示の修正
-export VTE_CJK_WIDTH=1
-
-# WSLg
-export LIBGL_ALWAYS_INDIRECT=0
-
-# tmux
-# export TERM=screen-256color
-
-# neovim
-export PATH=$PATH:$HOME/.local/bin
-
-# for sudoedit
-export EDITOR=nvim
-
-# 環境変数XDG_CONFIG_HOMEの設定
-export XDG_CONFIG_HOME="$HOME/.config/"
-export XDG_CACHE_HOME="$HOME/.cache/"
-
-# キーバインド
-# emacs 風キーバインドにする
+# Emacs style
 bindkey -e
 
-# ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
+# History search with wildcard
 bindkey '^R' history-incremental-pattern-search-backward
 
-# HOMEキーとENDキーを機能させる
+# HOME and END keys
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
-# ヒストリの設定
+# ----------------------------------------
+# History
+# ----------------------------------------
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# Ctrl + s
-stty stop undef
+# ----------------------------------------
+# Shell options
+# ----------------------------------------
 
 # 日本語ファイル名を表示可能にする
-setopt print_eight_bit
+setopt PRINT_EIGHT_BIT
 
 # beep を無効にする
-setopt no_beep
+setopt NO_BEEP
 
-# フローコントロールを無効にする
-setopt no_flow_control
+# C-s / C-q のフロー制御を無効
+setopt NO_FLOW_CONTROL
 
-# Ctrl+Dでzshを終了しない
-setopt ignore_eof
+# Ctrl+Dで終了しない
+setopt IGNORE_EOF
 
-# '#' 以降をコメントとして扱う
-setopt interactive_comments
+# # をコメントとして扱う
+setopt INTERACTIVE_COMMENTS
 
-# ディレクトリ名だけでcdする
-setopt auto_cd
+# ディレクトリ名だけでcd
+setopt AUTO_CD
 
-# cd したら自動的にpushdする
-setopt auto_pushd
+# cd したら自動的に pushd
+setopt AUTO_PUSHD
 
 # 重複したディレクトリを追加しない
-setopt pushd_ignore_dups
+setopt PUSHD_IGNORE_DUPS
 
-# 同時に起動したzshの間でヒストリを共有する
-setopt share_history
+# zsh 間で履歴共有
+setopt SHARE_HISTORY
 
-# 同じコマンドをヒストリに残さない
-setopt hist_ignore_all_dups
+# 重複した履歴を保存しない
+setopt HIST_IGNORE_ALL_DUPS
 
-# スペースから始まるコマンド行はヒストリに残さない
-setopt hist_ignore_space
+# スペースから始まるコマンドを履歴に残さない
+setopt HIST_IGNORE_SPACE
 
-# ヒストリに保存するときに余分なスペースを削除する
-setopt hist_reduce_blanks
+# 余分なスペースを削除
+setopt HIST_REDUCE_BLANKS
 
-# 高機能なワイルドカード展開を使用する
-setopt extended_glob
+# 高機能 glob
+setopt EXTENDED_GLOB
 
-# zsh: no matches found:
-setopt nonomatch
+# no matches found を発生させない
+setopt NOMATCH
+
+# prompt 内で parameter expansion 等を有効にする
+setopt PROMPT_SUBST
 
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -199,67 +196,86 @@ colors
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
+
 # ここで指定した文字は単語区切りとみなされる
 # / も区切りと扱うので、^W でディレクトリ１つ分を削除できる
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
+# ----------------------------------------
+# zsh-completions / zsh-autosuggestions
+# ----------------------------------------
+
 # 補完機能を有効にする
 autoload -Uz compinit && compinit
 
-# 補完で小文字でも大文字にマッチさせる
+# 小文字・大文字を区別しない補完
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# ../ の後は今いるディレクトリを補完しない
+# ../ などのディレクトリ補完で、現在一などを候補から除外
 zstyle ':completion:*' ignore-parents parent pwd ..
 
-# sudo の後ろでコマンド名を補完する
+# sudo コマンド補完
 zstyle ':completion:*:sudo:*' $path
 
-# ps コマンドのプロセス名補完
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+# ----------------------------------------
+# pyenv
+# ----------------------------------------
 
-# エイリアス
-alias la='ls -a'
-alias ls='ls -F --color=auto'
-alias ll='ls -la --time-style="+%Y-%m-%d %H:%M:%S"'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ..='cd ../'
-alias mkdir='mkdir -p'
-alias rm='rm -i'
-
-# sudo の後のコマンドでエイリアスを有効にする
-alias sudo='sudo '
-
-# シェルの再起動
-alias relogin='exec $SHELL -l'
-
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-alias -g cl++='clang++ -std=c++20 -Wall --pedantic-errors'
-alias -g pip-review="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-
-alias -g sdl="clang++ -I/usr/local/include/SDL2 -D_THREAD_SAFE -L/usr/local/lib -lSDL2"
-
-# for profiling
-if (which zprof > /dev/null 2>&1) ;then
-    zprof
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init --path)"
 fi
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
+# ----------------------------------------
 # nvm
-export NVM_DIR="$HOME/.config//nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# ----------------------------------------
 
-# rust
-source "$HOME/.cargo/env"
+# Load nvm
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh"
+fi
 
-# poetry
-export PATH="$HOME/.local/bin:$PATH"
+# Load nvm bash completion
+if [[ -s "$NVM_DIR/bash_completion" ]]; then
+  source "$NVM_DIR/bash_completion"
+fi
+
+# ----------------------------------------
+# Aliases
+# ----------------------------------------
+
+# ls
+alias ls='ls -G -F --color=auto'
+alias la='ls -A'
+alias ll='ls -lah'
+
+# directory
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# file
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# disc
+alias df='df -h'
+alias du='du -h'
+alias free='free -h'
+
+# history
+alias h='history'
+alias hg='history | grep'
+
+# shell
+alias relogin='exec $SHELL -l'
+alias reload='source ~/.zshrc'
+
+# cl++
+alias cpp='clang++ -std=c++20 -Wall -Wpedantic'
+alias c23='clang -std=c23 -Wall -Wextra -Wpedantic'
+
+# SDL3
+alias -g sdl3cpp="cpp $(pkg-config sdl3 --cflags --libs)"
+alias -g sdl3c23="c23 $(pkg-config sdl3 --cflags --libs)"
